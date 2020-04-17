@@ -17,7 +17,43 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+<<<<<<< HEAD
 <body>
+=======
+    <?php   
+        session_start();
+        if(isset($_SESSION['last_action']))
+        {
+          if(time() - $_SESSION['last_action']>1800)
+          {
+            session_unset();
+            session_destroy();  
+          }
+        }
+        $_SESSION['last_action'] = time();
+        if(isset($_SESSION['username'])){
+             'Username - '.$_SESSION['username']." ";
+             'User Level - '.$_SESSION['userlevel'];
+        }
+        else{
+          header("Location: index.php");
+        }
+    ?>
+<body>
+    <?php if($_SESSION['userlevel']!=3){
+          header("Location: home.php");
+    }?>
+    <?php if(isset($_SESSION['username'])): ?>
+    <ul class="nav justify-content-end">
+      <li class="nav-item">
+        <a class="nav-link" href="../home.php">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../logout.php">Logout</a>
+      </li>
+    </ul>
+    <?php endif; ?>
+>>>>>>> branch_achal
     <div class="container">
         <h2 class="text-center my-4">Edit Area</h2>
 
@@ -32,6 +68,7 @@
             </tr>
           </thead>
           <?php
+<<<<<<< HEAD
                     $area_id = isset($_GET['area_id']) ? $_GET['area_id'] : '0';
                     $area = isset($_GET['area']) ? $_GET['area'] : '0';
                     // $area = $_POST['area'];
@@ -47,6 +84,35 @@
          }
          $result = mysqli_query($con, $query);
             ?>
+=======
+          $con = mysqli_connect("localhost","root");
+              if(! $con ) {
+                die('Could not connect: ' . mysqli_error());
+              }
+              $area_id =mysqli_real_escape_string($con, isset($_GET['area_id']) ? $_GET['area_id'] : '0');
+              $area = mysqli_real_escape_string($con,isset($_GET['area']) ? $_GET['area'] : '0');
+              // $area = $_POST['area'];
+              $prog_id =mysqli_real_escape_string($con, isset($_GET['prog_id']) ? $_GET['prog_id'] : '0');
+              
+              mysqli_select_db($con, "bughound");
+              
+              
+              if(isset($area) && isset($area_id)){
+                $query1 = "UPDATE areas SET area ='".$area."' where area_id = '".$area_id."';";
+                $query3 = "SELECT areas.area_id, areas.prog_id, areas.area, programs.program FROM areas INNER JOIN programs ON areas.prog_id=programs.prog_id WHERE areas.prog_id=$prog_id AND areas.area='$area' AND areas.area_id<>$area_id";
+                $result3=mysqli_query($con, $query3);
+                if(mysqli_num_rows($result3)>0):?>
+                    <h1>Area name already exists!!</h1>
+                <?php else:mysqli_query($con, $query1); ?>
+                    <!-- <h1>Area added sucessfully!!</h1> -->
+                <?php endif; ?>
+                <?php  
+              }              
+              $query2 = "SELECT * FROM areas where prog_id ='".$prog_id."';";     
+              $result = mysqli_query($con, $query2);
+
+          ?>
+>>>>>>> branch_achal
           <tbody>
             <?php
               if (mysqli_num_rows($result) > 0) {
@@ -83,12 +149,18 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript">
+<<<<<<< HEAD
       $(document).ready(function () {
   $('#dtBasicExample').DataTable();
   $('.dataTables_length').addClass('bs-select');
 });
      function go_back(){
         window.location.replace("../programtable.php");
+=======
+
+     function go_back(){
+        window.location.assign("../programtable.php");
+>>>>>>> branch_achal
       }
       function dance(area_id)
       {

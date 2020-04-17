@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Add Program</title>
+    <title>Add Employee</title>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -17,98 +17,64 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<<<<<<< HEAD
-  <?php session_start(); ?>
-=======
-  <?php session_start(); 
-  if(isset($_SESSION['last_action']))
-        {
-          if(time() - $_SESSION['last_action']>1800)
-          {
-            session_unset();
-            session_destroy();  
-          }
-        }
-        $_SESSION['last_action'] = time();
-  ?>
+    
 
->>>>>>> branch_achal
-    <?php if(isset($_SESSION['username'])): ?>
-    <ul class="nav justify-content-end">
-      <li class="nav-item">
-        <a class="nav-link" href="home.php">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="logout.php">Logout</a>
-      </li>
-    </ul>
-    <?php endif; ?>
-  
     <div class="container" style="">
-        <h2 class="text-center my-4">Add Program</h2>    
-        <form name="form_prog_add" action="program_add.php" method="POST">
+        <h2 class="text-center my-4">Add Employee</h2>
+
         <div id="addempForm">
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                 <label for="name"> Program Name</label>
-                 <input type="text" class="form-control" id="problem-summary" name="prog_name" placeholder="" required maxlength="32">
+                 <label for="name">Name</label>
+                 <input type="text" class="form-control" id="problem-summary" placeholder="">
               </div>
-            </div>          
+            </div> 
           </div>
 
            <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                 <label for="name">Program Release</label>
-                 <input type="text" class="form-control" id="problem-summary" name="prog_release" placeholder="" required maxlength="32">
+                 <label for="name">User Name</label>
+                 <input type="text" class="form-control" id="problem-summary" placeholder="">
               </div>
             </div> 
           </div>
            <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                 <label for="name">Program Version</label>
-                 <input type="text" class="form-control" id="problem-summary" name="prog_version" placeholder="" required maxlength="32">
+                 <label for="name">Password</label>
+                 <input type="text" class="form-control" id="problem-summary" placeholder="">
               </div>
             </div> 
           </div>
-<<<<<<< HEAD
-          
-          
-=======
->>>>>>> branch_achal
-
+           <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                 <label for="name">User Level</label>
+                 <input type="text" class="form-control" id="problem-summary" placeholder="">
+              </div>
+            </div> 
+          </div>
           <div class="row">
             <div class="col-md-3">
               <div class="form-group">
                 <button class="btn btn-primary w-100" style="margin-top: 10px" type="submit">Submit</button>
               </div>
             </div> 
-             
-          </div>
-          </div>
-        </form>
-          
-           <div class="col-md-3">
+            <div class="col-md-3">
               <div class="form-group">
-                <button class="btn btn-primary w-100" style="margin-top: 10px" onclick="go_back()">Back</button>
+                <button class="btn btn-primary w-100" style="margin-top: 10px" type="submit">Cancel</button>
               </div>
             </div> 
-            </div>
+          </div>
+          </div>
+
+          </div>
+            </form>
         </div>
     </div>
-    <script type="text/javascript">
-      function go_back(){
-        window.location.replace("maintaindb.php");
-      }
-      function validate(){
-        var name=document.forms["form_prog_add"]["prog_name"].value;
-        var release=document.forms["form_prog_add"]["prog_release"].value;
-        var version=document.forms["form_prog_add"]["prog_version"].value;
-      }      
-
-    </script>
+    
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

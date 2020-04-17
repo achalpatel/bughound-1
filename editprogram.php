@@ -16,27 +16,94 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+<<<<<<< HEAD
 <body>
     <?php 
         $con = mysqli_connect("localhost","root");
         mysqli_select_db($con, "lab3");
+=======
+<?php   
+        session_start();
+        if(isset($_SESSION['last_action']))
+        {
+          if(time() - $_SESSION['last_action']>1800)
+          {
+            session_unset();
+            session_destroy();  
+          }
+        }
+        $_SESSION['last_action'] = time();
+        if(isset($_SESSION['username'])){
+            echo 'Username - '.$_SESSION['username']." ";
+            echo 'User Level - '.$_SESSION['userlevel'];
+        }
+        else{
+          header("Location: index.php");
+        }
+    ?>
+<body>
+    <?php if($_SESSION['userlevel']!=3){
+        header("Location: home.php");
+    }?>
+      <?php if(isset($_SESSION['username'])): ?>
+        <ul class="nav justify-content-end">
+          <li class="nav-item">
+            <a class="nav-link" href="home.php">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="logout.php">Logout</a>
+          </li>
+        </ul>
+      <?php endif; ?>
+      <?php 
+        $con = mysqli_connect("localhost","root");
+        mysqli_select_db($con, "bughound");
+>>>>>>> branch_achal
         if(isset($_GET['p_id'])){          
           $p_id=$_GET['p_id'];
           $p_name=$_GET['prog_name']; 
           $p_release=$_GET['prog_release'];
           $p_version=$_GET['prog_version']; 
           $query1="UPDATE programs SET program='$p_name', program_release='$p_release', program_version='$p_version' WHERE prog_id=$p_id;";
+<<<<<<< HEAD
           mysqli_query($con,$query1);
         }      
 
      ?>
     <div class="container" style="">
         <h2 class="text-center my-4">Programs</h2>    
+=======
+          $query2="SELECT * FROM programs WHERE program='$p_name' AND prog_id<>$p_id;"; 
+          $result2=mysqli_query($con, $query2);
+      ?>        
+        <?php if(isset($result2) && mysqli_num_rows($result2)>0):?>
+            <h1>Same Program already exists</h1>
+
+          <?php else: $result1=mysqli_query($con, $query1);?>   
+            <h1> Sucessfully added </h1>  
+          <?php endif; }?>
+     
+    <div class="container" style="">
+        <h2 class="text-center my-4">Programs</h2>    
+        <table class="table">
+           <thead>
+           <tr>
+              <th scope="col">Program</th>
+              <th scope="col">Version</th>
+              <th scope="col">Release</th>
+              <th scope="col">Delete</th>  
+            </tr>
+            </thead>  
+>>>>>>> branch_achal
           <?php 
             
             $query="SELECT * FROM programs";
             $result=mysqli_query($con,$query);
+<<<<<<< HEAD
             echo "<table border=1 ><th>Program</th><th>Version</th><th>Release</Th>\n";
+=======
+            // echo "<table border=1 ><th>Program</th><th>Version</th><th>Release</Th>\n";
+>>>>>>> branch_achal
             if(mysqli_num_rows($result)>0){
               while($row=mysqli_fetch_row($result)){
                 ?>
@@ -44,12 +111,20 @@
                   <td><a href="program_edit.php/?id=<?php echo $row[0]; ?>"><?php echo $row[1]; ?></a></td>
                   <td><?php echo $row[2]; ?></td>
                   <td><?php echo $row[3]; ?></td>
+<<<<<<< HEAD
+=======
+                  <td style="padding-left: 0px;"> <button type="submit" name="delete_program"  onclick="dance2(<?php echo $row[0]?>);" class="btn btn-danger" style="float: ;">Delete</button></td>
+>>>>>>> branch_achal
                 </tr>
                 <?php  
               }
             }
             ?>
         </table>
+<<<<<<< HEAD
+=======
+         <button type="submit" class="btn btn-primary" style="float: right;" onclick="go_back()">Back</button>
+>>>>>>> branch_achal
         </div>
     </div>
   
@@ -60,6 +135,18 @@
         
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<<<<<<< HEAD
+=======
+    <script type="text/javascript">
+       function go_back(){
+        window.location.replace("maintaindb.php");
+      }
+      function dance2(prog_id) {
+        window.location.replace("deleteproghidden.php/?prog_id="+prog_id);  
+        // body...
+      }
+    </script>
+>>>>>>> branch_achal
 
 </body>
 </html>

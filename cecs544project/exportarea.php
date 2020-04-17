@@ -3,11 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<<<<<<< HEAD
     <title>Search bug</title>
-=======
-    <title>Export Area</title>
->>>>>>> branch_achal
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -20,7 +16,6 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-<<<<<<< HEAD
 <body>
     
 
@@ -73,91 +68,6 @@
     </div>
     
 
-=======
-<?php   
-        session_start();
-        if(isset($_SESSION['last_action']))
-        {
-          if(time() - $_SESSION['last_action']>1800)
-          {
-            session_unset();
-            session_destroy();  
-          }
-        }
-        $_SESSION['last_action'] = time();
-        if(isset($_SESSION['username'])){
-            echo 'Username - '.$_SESSION['username']." ";
-            echo 'User Level - '.$_SESSION['userlevel'];
-        }
-        else{
-          header("Location: index.php");
-        }
-    ?>
-<body>
-  <?php if($_SESSION['userlevel']!=3){
-        header("Location: home.php");
-    }?>
-  <?php
-      $con = mysqli_connect("localhost","root");
-      if(! $con ) {
-        die('Could not connect: ' . mysqli_error());
-      }
-      mysqli_select_db($con, "bughound");
-      $query = "SHOW TABLES FROM bughound";
-      mysqli_query($con, $query);    
-      $result = mysqli_query($con, $query);
-      if (mysqli_num_rows($result) > 0) {     
-  ?>
-
-      <?php if(isset($_SESSION['username'])): ?>
-        <ul class="nav justify-content-end">
-          <li class="nav-item">
-            <a class="nav-link" href="home.php">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="logout.php">Logout</a>
-          </li>
-        </ul>
-      <?php endif; ?>
-    <div class="container">
-    <h2 class="text-center my-4">Export Area</h2>
-    <div id="newBugForm" class="container">
-        <form action="export_to.php" method="post">
-            <div class="row">
-                <div class="col-12 col-md-4">
-                   <div class="form-group">
-                        <label for="program">Table</label>
-                        <select name="table_select" class="form-control" >                      
-                    
-                        <option value="areas">areas</option>
-                        <option value="employees">employees</option>
-                        <option value="programs">programs</option>
-
-                
-            </select>
-
-
-
-                <label for="name" style="margin-top: 15px;">Type</label>
-                <select class="form-control" name="type_select">
-                  <option value="ascii">ASCII</option>
-                  <option value="xml">XML</option>
-                </select>
-              </div>
-                <button class="btn btn-primary w-80" name="export" style="float: right margin-left: 15px;" type="submit">Submit</button>
-                <button class="btn btn-primary w-80"  style="float: right; margin-left: 5px;" type="button" onclick="go_back()">Back</button>
-              </div>            
-              </div>
-            </form>
-          </div>              
-        </div>
-        
-        <?php
-        } else {
-            echo "No Program Found: Please add program first!!";
-        }
-        ?>
->>>>>>> branch_achal
 
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -167,14 +77,5 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<<<<<<< HEAD
-=======
-    <script type="text/javascript">
-     function go_back(){
-        window.location.replace("maintaindb.php");
-      }
-    </script>
-
->>>>>>> branch_achal
 </body>
 </html>

@@ -16,6 +16,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+<<<<<<< HEAD
 <body>
 
    <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -61,18 +62,62 @@
     </ul>
   </div>
 </nav>
+=======
+<?php   
+        session_start();
+        if(isset($_SESSION['last_action']))
+        {
+          if(time() - $_SESSION['last_action']>1800)
+          {
+            session_unset();
+            session_destroy();  
+          }
+        }
+        $_SESSION['last_action'] = time();
+        if(isset($_SESSION['username'])){
+            echo 'Username - '.$_SESSION['username']." ";
+            echo 'User Level - '.$_SESSION['userlevel'];
+        }
+        else{
+          header("Location: index.php");
+        }
+    ?>
+<body>
+  <?php if($_SESSION['userlevel']!=3){
+        header("Location: home.php");
+    }?>
+      <?php if(isset($_SESSION['username'])): ?>
+        <ul class="nav justify-content-end">
+          <li class="nav-item">
+            <a class="nav-link" href="home.php">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="logout.php">Logout</a>
+          </li>
+        </ul>
+      <?php endif; ?>
+
+>>>>>>> branch_achal
     
 
     <div class="container" style="">
 
         <h2 class="text-center my-4">Add Employee</h2>
+<<<<<<< HEAD
         <form name="theform" action="page2.php" method= "POST" >
+=======
+        <form name="theform"  action="emp_add.php" method= "POST" onsubmit="return validate()" >
+>>>>>>> branch_achal
         <div id="addempForm">
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
                  <label for="name">Name</label>
+<<<<<<< HEAD
                  <input type="text" class="form-control" id="problem-summary" name="name" placeholder="">
+=======
+                 <input type="text" class="form-control" id="problem-summary" name="name" placeholder="" required maxlength="32">
+>>>>>>> branch_achal
               </div>
             </div> 
           </div>
@@ -81,7 +126,11 @@
             <div class="col-md-6">
               <div class="form-group">
                  <label for="username">User Name</label>
+<<<<<<< HEAD
                  <input type="text" class="form-control" id="problem-summary" name="username" placeholder="">
+=======
+                 <input type="text" class="form-control" id="problem-summary" name="username" placeholder="" required maxlength="32">
+>>>>>>> branch_achal
               </div>
             </div> 
           </div>
@@ -89,7 +138,11 @@
             <div class="col-md-6">
               <div class="form-group">
                  <label for="password">Password</label>
+<<<<<<< HEAD
                  <input type="password" class="form-control" id="problem-summary" name="password" placeholder="">
+=======
+                 <input type="password" class="form-control" id="problem-summary" name="password" placeholder="" required maxlength="32">
+>>>>>>> branch_achal
               </div>
             </div> 
           </div>
@@ -97,7 +150,11 @@
             <div class="col-md-6">
               <div class="form-group">
                  <label for="name">User Level</label>
+<<<<<<< HEAD
                  <input type="text" class="form-control" id="problem-summary" name="userlevel" placeholder="">
+=======
+                 <input type="number" class="form-control" id="userlevel" name="userlevel" placeholder="" required>
+>>>>>>> branch_achal
               </div>
             </div> 
           </div>
@@ -141,8 +198,24 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript">
+<<<<<<< HEAD
        function go_back(){
         window.location.replace("maintaindb.php");
+=======
+       function validate(){
+          var x=document.getElementById("userlevel").value;
+          if(x>3 || x<1){
+            alert("User Level can be between 1, 2 or 3");
+            return false;
+          }
+          else{
+            return true;
+          }
+       }
+
+       function go_back(){
+        window.location.assign("maintaindb.php");
+>>>>>>> branch_achal
       }
     </script>
 

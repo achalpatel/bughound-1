@@ -16,6 +16,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+<<<<<<< HEAD
 <body>
  <h2 class="text-center my-4">Edit Employee</h2>
 
@@ -46,12 +47,74 @@
                              <input type="text" class="form-control" name="emp_id" value="<?php echo $row["emp_id"]; ?>" disabled>
                           </div>
                         </div> 
+=======
+<?php   
+
+        session_start();
+        if(isset($_SESSION['last_action']))
+        {
+          if(time() - $_SESSION['last_action']>1800)
+          {
+            session_unset();
+            session_destroy();  
+          }
+        }
+        $_SESSION['last_action'] = time();
+        if(isset($_SESSION['username'])){
+            echo 'Username - '.$_SESSION['username']." ";
+            echo 'User Level - '.$_SESSION['userlevel'];
+        }
+        else{
+          header("Location: index.php");
+        }
+    ?>
+<body>
+  <?php if($_SESSION['userlevel']!=3){
+        header("Location: home.php");
+    }?>
+      <?php if(isset($_SESSION['username'])): ?>
+        <ul class="nav justify-content-end">
+          <li class="nav-item">
+            <a class="nav-link" href="../home.php">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../logout.php">Logout</a>
+          </li>
+        </ul>
+      <?php endif; ?>
+ <h2 class="text-center my-4">Edit Employee</h2>
+
+         <?php
+  
+                    $emp_id = isset($_GET['emp_id']) ? $_GET['emp_id'] : '0';
+                    $con = mysqli_connect("localhost","root");
+                    if(! $con ) {
+                    die('Could not connect: ' . mysqli_error());
+                    }
+                    mysqli_select_db($con, "bughound");
+                    $query = "SELECT * FROM employees where emp_id = '".$emp_id."';";                                        
+                    $result = mysqli_query($con, $query);
+                    $row = mysqli_fetch_assoc($result);
+            ?>
+            <table>
+              <tbody>
+            
+               <tr>
+                <form name= "edit_form" method="POST" action="../editemp2.php">
+                  <div id="addempForm" class="container">
+                      <div class="row ">
+                        <input type="hidden" value="<?php echo $row["emp_id"] ?>" name="e_id"/>
+>>>>>>> branch_achal
                       </div>
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group">
                              <label for="name">Name</label>
+<<<<<<< HEAD
                              <input type="text" id="name" class="form-control"  value="<?php echo $row["name"]; ?>">
+=======
+                             <input type="text" id="name" class="form-control" name="name" value="<?php echo $row["name"]; ?>">
+>>>>>>> branch_achal
                           </div>
                         </div> 
                       </div>
@@ -79,6 +142,7 @@
                           </div>
                         </div> 
                       </div>
+<<<<<<< HEAD
                  <button type="submit" name="update" class="btn btn-primary" onclick="dance(<?php echo $row["emp_id"]; ?>)">Update</button>
                </tr>
                <?php
@@ -90,6 +154,20 @@
             echo "0 results";
          }
             ?>
+=======
+                 <button type="submit" name="update" class="btn btn-primary">Update</button>
+                 </form>
+                 <div class="col-md-1">
+              <div class="form-group">
+                <button class="btn btn-primary w-100" style="margin-top: 10px" onclick="go_back()">Back</button>
+              </div>
+            </div> 
+            </tr>
+
+            
+          
+        
+>>>>>>> branch_achal
             
           </tbody>
         </table>
@@ -106,6 +184,12 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript">
+<<<<<<< HEAD
+=======
+      function go_back(){
+        window.location.assign("../showemp.php");
+      }
+>>>>>>> branch_achal
       function dance(emp_id,name) {
         
         var name = document.getElementById("name").value;

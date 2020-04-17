@@ -16,11 +16,19 @@
     ?>
 
     <?php
+<<<<<<< HEAD
         
     	$username=$_POST['username'];
         $password=$_POST['password'];
     	$con=mysqli_connect("localhost","root");
     	mysqli_select_db($con,"lab3");
+=======
+        $con=mysqli_connect("localhost","root");
+    	$username=mysqli_real_escape_string($con,$_POST['username']);
+        $password=mysqli_real_escape_string($con,$_POST['password']);
+    	
+    	mysqli_select_db($con,"bughound");
+>>>>>>> branch_achal
     	$query="SELECT * FROM employees WHERE username='$username' AND password='$password';";
     	$result=mysqli_query($con,$query);
         $num_rows=mysqli_num_rows($result);

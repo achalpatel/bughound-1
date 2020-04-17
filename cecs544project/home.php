@@ -16,84 +16,13 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-<?php   
-        session_start();
-<<<<<<< HEAD
-        if(isset($_SESSION['username'])){
-            echo 'Username - '.$_SESSION['username']." ";
-            echo 'User Level - '.$_SESSION['userlevel'];
-=======
-        if(isset($_SESSION['last_action']))
-        {
-          if(time() - $_SESSION['last_action']>1800)
-          {
-            session_unset();
-            session_destroy();  
-          }
-        }
-        $_SESSION['last_action'] = time();
-        
-        
-        if(isset($_SESSION['username'])){
-             'Username - '.$_SESSION['username']." ";
-             'User Level - '.$_SESSION['userlevel'];
->>>>>>> branch_achal
-        }
-        else{
-          header("Location: index.php");
-        }
-    ?>
 <body>
-    <?php if(isset($_SESSION['username'])): ?>
-    <ul class="nav justify-content-end">
-      <li class="nav-item">
-        <a class="nav-link" href="logout.php">Logout</a>
-      </li>
-    </ul>
-  <?php else: ?>
-      <ul class="nav justify-content-end">
-      <li class="nav-item">
-        <a class="nav-link" href="index.php">Login</a>
-      </li>
-    </ul>
-  <?php endif; ?>
-  <?php 
-  if(!isset($_SESSION['userlevel'])):?>
-    <style type="text/css">
-      #addbug{
-        display: None;
-      }
-      #updatebug{
-        display: None;
-      }
-      #dbmaintenance{
-        display: None;
-      }
-    </style>
-  <?php elseif($_SESSION['userlevel']==1): ?>
-    <style type="text/css">
-      #updatebug{
-        display: None;
-      }
-      #dbmaintenance{
-        display: None;
-      }
-    </style>
-    <?php elseif($_SESSION['userlevel']==2): ?>
-    <style type="text/css">
-      #dbmaintenance{
-        display: None;
-      }
-    </style>
-    <?php endif; ?>
-    
-    
 
    <div class="container" style="">
-        <h2 class="text-center my-4">Home</h2>
+        <h2 class="text-center my-4">Database Maintenance</h2>
 
-        <div id="addempForm">                          
-          <div id="addbug" class="row">
+        <div id="addempForm">
+          <div class="row">
             <div class="col-md-6">
               <div class="form-group">
                  <label for="name" style="font-size: 35px;">Add Bug</label>
@@ -102,7 +31,7 @@
             </div> 
           </div>
 
-           <div id="updatebug" class="row">
+           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
                  <label for="name" style="font-size: 35px;">Update Existing Bug</label>
@@ -111,21 +40,17 @@
             </div> 
           </div>
 
-           <div id="dbmaintenance" class="row">
+           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
                  <label for="name" style="font-size: 35px; margin-right: 27px;">Database Maintenance</label>
-                 <button class="btn btn-info w-60" style="margin-left: 20px" type="button" onclick="go_db()">Click me!</button>
+                 <button class="btn btn-info w-60" style="margin-left: 20px" type="button">Click me!</button>
               </div>
             </div> 
           </div>
 
           
-          <script type="text/javascript">
-            function go_db(){
-              window.location.assign("maintaindb.php");
-            }
-          </script>
+
           
     
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

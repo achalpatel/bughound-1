@@ -16,6 +16,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+<<<<<<< HEAD
 <body>
  <h2 class="text-center my-4">Editable Area</h2>
 
@@ -31,6 +32,54 @@
          $result = mysqli_query($con, $query);
 
             ?>
+=======
+    <?php   
+        session_start();
+        if(isset($_SESSION['last_action']))
+        {
+          if(time() - $_SESSION['last_action']>1800)
+          {
+            session_unset();
+            session_destroy();  
+          }
+        }
+        $_SESSION['last_action'] = time();
+        if(isset($_SESSION['username'])){
+            echo 'Username - '.$_SESSION['username']." ";
+            echo 'User Level - '.$_SESSION['userlevel'];
+        }
+        else{
+          header("Location: index.php");
+        }
+    ?>
+<body>
+  <?php if($_SESSION['userlevel']!=3){
+          header("Location: home.php");
+    }?>
+    <?php if(isset($_SESSION['username'])): ?>
+    <ul class="nav justify-content-end">
+      <li class="nav-item">
+        <a class="nav-link" href="../home.php">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../logout.php">Logout</a>
+      </li>
+    </ul>
+    <?php endif; ?>
+ <h2 class="text-center my-4">Editable Area</h2>
+
+         <?php
+            $area_id = $_GET['area_id'];
+            $con = mysqli_connect("localhost","root");
+            if(! $con ) {
+              die('Could not connect: ' . mysqli_error());
+            }
+            mysqli_select_db($con, "bughound");
+            $query1 = "SELECT * FROM areas where area_id ='".$area_id."';";          
+            
+            $result = mysqli_query($con, $query1);
+          ?>
+>>>>>>> branch_achal
           
        <table>
           <tbody>
@@ -39,6 +88,10 @@
             while($row = mysqli_fetch_assoc($result)) {
                ?>
                <tr>
+<<<<<<< HEAD
+=======
+                
+>>>>>>> branch_achal
                 <div id="addempForm" class="container">
                   <div class="row ">
                         <div class="col-md-6">
@@ -61,7 +114,11 @@
                         <div class="col-md-6">
                           <div class="form-group">
                              <label for="name">Area Name</label>
+<<<<<<< HEAD
                              <input id= "update" type="text" class="form-control update" name="area" value="<?php echo $row["area"]; ?>">
+=======
+                             <input id= "update" type="text" class="form-control update" name="area" value="<?php echo $row["area"]; ?>" required maxlength="32"/>
+>>>>>>> branch_achal
                           </div>
                         </div> 
                       </div>
@@ -75,6 +132,7 @@
                         </div> 
                       </div>
 
+<<<<<<< HEAD
 
                 </div>
               </tr>
@@ -85,6 +143,16 @@
                 }else {
             echo "0 results";
          }
+=======
+                </div>
+                
+              </tr>            
+               <?php
+                  }
+                }else {
+                  echo "0 results";
+                }
+>>>>>>> branch_achal
                ?>
        
         </tbody>
@@ -103,8 +171,19 @@
       
       function dance(pid,aid)
       {
+<<<<<<< HEAD
         var area = document.getElementById("update").value;
         window.open("../editarea.php/?prog_id="+pid+"&area_id="+aid+"&area="+area,"_self");
+=======
+        // document.getElementById("update").required;
+        var area = document.getElementById("update").value;
+        if(area===""){
+          alert("Field is required");
+        }
+        else{
+          window.open("../editarea.php/?prog_id="+pid+"&area_id="+aid+"&area="+area,"_self");  
+        }        
+>>>>>>> branch_achal
       }
     </script>
 </body>

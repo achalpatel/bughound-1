@@ -3,11 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<<<<<<< HEAD
-    <title>Search bug</title>
-=======
     <title>Export Area</title>
->>>>>>> branch_achal
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -20,71 +16,8 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-<<<<<<< HEAD
-<body>
-    
-
-    <div class="container">
-        <h2 class="text-center my-4">Search Bug Page</h2>
-        <div id="newBugForm" class="container">
-            <form action="">
-                <div class="row">
-                    <div class="col-12 col-md-4">
-                        <div class="form-group">
-                            <label for="program">Program</label>
-                            <select class="form-control" id="program">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </select>
-                          </div>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <div class="form-group">
-                            <label for="report-type">ASCII</label>
-                            <select class="form-control" id="report-type">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </select>
-                          </div>
-                    </div>
-              </div>
-
-              <div class="row">
-                        <div class="col-md-3">
-                          <div class="form-group">
-                            <button class="btn btn-primary w-100" style="margin-top: 10px" type="submit">Submit</button>
-                          </div>
-                        </div> 
-                        <div class="col-md-3">
-                          <div class="form-group">
-                            <button class="btn btn-primary w-100" style="margin-top: 10px" type="submit">Cancel</button>
-                          </div>
-                        </div> 
-               </div>
-    
-            </form>
-        </div>
-    </div>
-    
-
-=======
 <?php   
         session_start();
-        if(isset($_SESSION['last_action']))
-        {
-          if(time() - $_SESSION['last_action']>1800)
-          {
-            session_unset();
-            session_destroy();  
-          }
-        }
-        $_SESSION['last_action'] = time();
         if(isset($_SESSION['username'])){
             echo 'Username - '.$_SESSION['username']." ";
             echo 'User Level - '.$_SESSION['userlevel'];
@@ -128,15 +61,14 @@
                    <div class="form-group">
                         <label for="program">Table</label>
                         <select name="table_select" class="form-control" >                      
-                    
+                    <?php while($row = mysqli_fetch_assoc($result)) {  ?>
+                         <option > <?php echo $row[0]; ?> </option> 
                         <option value="areas">areas</option>
                         <option value="employees">employees</option>
                         <option value="programs">programs</option>
 
-                
+                <?php }  ?>
             </select>
-
-
 
                 <label for="name" style="margin-top: 15px;">Type</label>
                 <select class="form-control" name="type_select">
@@ -157,7 +89,6 @@
             echo "No Program Found: Please add program first!!";
         }
         ?>
->>>>>>> branch_achal
 
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -167,14 +98,11 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<<<<<<< HEAD
-=======
     <script type="text/javascript">
      function go_back(){
         window.location.replace("maintaindb.php");
       }
     </script>
 
->>>>>>> branch_achal
 </body>
 </html>

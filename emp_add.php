@@ -16,6 +16,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+<<<<<<< HEAD
 <body>
 
    <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -92,6 +93,71 @@
             function go_home(){
                 window.location.assign("index.php");
             }
+=======
+<?php   
+        session_start();
+        if(isset($_SESSION['last_action']))
+        {
+          if(time() - $_SESSION['last_action']>1800)
+          {
+            session_unset();
+            session_destroy();  
+          }
+        }
+        $_SESSION['last_action'] = time();
+        if(isset($_SESSION['username'])){
+            echo 'Username - '.$_SESSION['username']." ";
+            echo 'User Level - '.$_SESSION['userlevel'];
+        }
+        else{
+          header("Location: index.php");
+        }
+    ?>
+<body>
+<?php if($_SESSION['userlevel']!=3){
+        header("Location: home.php");
+    }?>
+      <?php if(isset($_SESSION['username'])): ?>
+        <ul class="nav justify-content-end">
+          <li class="nav-item">
+            <a class="nav-link" href="home.php">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="logout.php">Logout</a>
+          </li>
+        </ul>
+      <?php endif; ?>
+   
+
+    <div class="container">
+          <?php        
+          $con = mysqli_connect("localhost","root");                       
+                $name = mysqli_real_escape_string($con,$_POST['name']);
+                $username = mysqli_real_escape_string($con,$_POST['username']);
+                $password = mysqli_real_escape_string($con,$_POST['password']);
+                $userlevel = mysqli_real_escape_string($con,$_POST['userlevel']);
+                
+                
+                mysqli_select_db($con, "bughound");
+                $query1 = "INSERT INTO employees (name, username, password, userlevel) VALUES ('".$name."','".$username."','".$password."','".$userlevel."')";        
+                $query2="SELECT * FROM employees WHERE username='$username'";
+                $result2=mysqli_query($con, $query2);
+                if(isset($result2) && mysqli_num_rows($result2)>0):?>
+                  <h1>Same Username already exists, please choose another username</h1>
+                <?php else:mysqli_query($con, $query1);?> 
+                <h1>Employee Added Sucessfully!!</h1>
+              <?php endif; ?>
+                        
+            <p>
+            <button class="btn btn-primary w-80"  style="float: right; margin-left: 15px;" type="button" onclick="go_home()">Return Home</button>
+            <button class="btn btn-primary w-80"  style="float: right; margin-left: 15px;" type="button" onclick="go_back()">Add more</button>
+        
+        <script language=Javascript>
+            function go_home(){
+                window.location.replace("home.php");
+            }
+            function go_back(){window.location.replace("addemp.php");}
+>>>>>>> branch_achal
         </script>
         </div> 
 

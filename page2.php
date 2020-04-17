@@ -17,7 +17,11 @@
 
                 // printf("You entered %s %s %s %s as your name.<p>",$first,$last,$password,$userlevel);
                     $con = mysqli_connect("localhost","root");
+<<<<<<< HEAD
                     mysqli_select_db($con, "lab3");
+=======
+                    mysqli_select_db($con, "bughound");
+>>>>>>> branch_achal
                      $query = "INSERT INTO employees (name, username, password, userlevel) VALUES ('".$name."','".$username."','".$password."','".$userlevel."')";
                     // echo $query;
                     mysqli_query($con, $query);
