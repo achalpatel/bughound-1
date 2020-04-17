@@ -16,38 +16,6 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-<<<<<<< HEAD
-<body>
- <h2 class="text-center my-4">Edit Employee</h2>
-
-         <?php
-                    $emp_id = isset($_GET['emp_id']) ? $_GET['emp_id'] : '0';
-                    $con = mysqli_connect("localhost","root");
-                    mysqli_select_db($con, "lab3");
-                    $query = "SELECT * FROM employees where emp_id = '".$emp_id."';";    
-                    mysqli_query($con, $query);
-                    if(! $con ) {
-            die('Could not connect: ' . mysqli_error());
-         }
-         $result = mysqli_query($con, $query);
-
-            ?>
-        <table>
-          <tbody>
-            <?php
-              if (mysqli_num_rows($result) > 0) {
-            while($row = mysqli_fetch_assoc($result)) {
-               ?>
-               <tr>
-                  <div id="addempForm" class="container">
-                      <div class="row ">
-                        <div class="col-md-6">
-                          <div class="form-group">
-                             <label for="name">Emp #</label>
-                             <input type="text" class="form-control" name="emp_id" value="<?php echo $row["emp_id"]; ?>" disabled>
-                          </div>
-                        </div> 
-=======
 <?php   
 
         session_start();
@@ -104,17 +72,12 @@
                   <div id="addempForm" class="container">
                       <div class="row ">
                         <input type="hidden" value="<?php echo $row["emp_id"] ?>" name="e_id"/>
->>>>>>> branch_achal
                       </div>
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group">
                              <label for="name">Name</label>
-<<<<<<< HEAD
-                             <input type="text" id="name" class="form-control"  value="<?php echo $row["name"]; ?>">
-=======
                              <input type="text" id="name" class="form-control" name="name" value="<?php echo $row["name"]; ?>">
->>>>>>> branch_achal
                           </div>
                         </div> 
                       </div>
@@ -142,19 +105,6 @@
                           </div>
                         </div> 
                       </div>
-<<<<<<< HEAD
-                 <button type="submit" name="update" class="btn btn-primary" onclick="dance(<?php echo $row["emp_id"]; ?>)">Update</button>
-               </tr>
-               <?php
-            }
-?>
-            
-
-        <?php } else {
-            echo "0 results";
-         }
-            ?>
-=======
                  <button type="submit" name="update" class="btn btn-primary">Update</button>
                  </form>
                  <div class="col-md-1">
@@ -167,7 +117,6 @@
             
           
         
->>>>>>> branch_achal
             
           </tbody>
         </table>
@@ -184,12 +133,9 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript">
-<<<<<<< HEAD
-=======
       function go_back(){
         window.location.assign("../showemp.php");
       }
->>>>>>> branch_achal
       function dance(emp_id,name) {
         
         var name = document.getElementById("name").value;

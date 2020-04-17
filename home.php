@@ -18,11 +18,6 @@
 </head>
 <?php   
         session_start();
-<<<<<<< HEAD
-        if(isset($_SESSION['username'])){
-            echo 'Username - '.$_SESSION['username']." ";
-            echo 'User Level - '.$_SESSION['userlevel'];
-=======
         if(isset($_SESSION['last_action']))
         {
           if(time() - $_SESSION['last_action']>1800)
@@ -37,7 +32,6 @@
         if(isset($_SESSION['username'])){
              'Username - '.$_SESSION['username']." ";
              'User Level - '.$_SESSION['userlevel'];
->>>>>>> branch_achal
         }
         else{
           header("Location: index.php");

@@ -16,84 +16,6 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-<<<<<<< HEAD
-<body>
-
-   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-<li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-           Area
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Add area</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-<li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown link
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown link
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-    </ul>
-  </div>
-</nav>
-    
-
-    <div class="container" style="">
-        <h2>
-            printf("You entered %s %s as your name.<p>",$first,$last);
-                    $con = mysqli_connect("localhost","root");
-                    mysqli_select_db($con, "lab2");
-                    $query = "INSERT INTO employee (name, username, password, userlevel) VALUES ('".$name."','".$username."','".$password."','".$userlevel."')";
-                    echo $query;
-                    mysqli_query($con, $query);
-            <?php
-                $name = $_POST['name'];
-                $username = $_POST['username'];
-                $password = $_POST['password'];
-                $userlevel = $_POST['userlevel'];
-
-                printf("You entered %s %s %s %s as your name.<p>",$first,$last,$password,$userlevel);
-                    $con = mysqli_connect("localhost","root");
-                    mysqli_select_db($con, "lab3");
-                     $query = "INSERT INTO employees (name, username, password, userlevel) VALUES ('".$name."','".$username."','".$password."','".$userlevel."')";
-                    echo $query;
-                    mysqli_query($con, $query);
-            ?>
-            You have successfully completed trial!
-            <p>
-            <input type="button" value="Return" id=button1 name=button1 onclick="go_home()">    
-        </h2>
-        <script language=Javascript>
-            function go_home(){
-                window.location.assign("index.php");
-            }
-=======
 <?php   
         session_start();
         if(isset($_SESSION['last_action']))
@@ -157,7 +79,6 @@
                 window.location.replace("home.php");
             }
             function go_back(){window.location.replace("addemp.php");}
->>>>>>> branch_achal
         </script>
         </div> 
 

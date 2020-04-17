@@ -17,9 +17,6 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<<<<<<< HEAD
-  <?php session_start(); ?>
-=======
   <?php session_start(); 
   if(isset($_SESSION['last_action']))
         {
@@ -32,7 +29,6 @@
         $_SESSION['last_action'] = time();
   ?>
 
->>>>>>> branch_achal
     <?php if(isset($_SESSION['username'])): ?>
     <ul class="nav justify-content-end">
       <li class="nav-item">
@@ -73,11 +69,6 @@
               </div>
             </div> 
           </div>
-<<<<<<< HEAD
-          
-          
-=======
->>>>>>> branch_achal
 
           <div class="row">
             <div class="col-md-3">

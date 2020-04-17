@@ -3,11 +3,6 @@
 <html>
     <head>
         <meta charset="UTF-8">
-<<<<<<< HEAD
-        <title>CECS 544 Lab 1 Page 2</title>
-    </head>
-    <body>
-=======
         <title>Area</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -43,36 +38,10 @@
     	<?php if($_SESSION['userlevel']!=3){
         	header("Location: home.php");
     	}?>
->>>>>>> branch_achal
         <h2>
           
 
             <?php
-<<<<<<< HEAD
-                $prog_id = $_POST['prog_id'];
-                $area = $_POST['area'];
-                
-
-                // printf("You entered %s %s %s %s as your name.<p>",$first,$last,$password,$userlevel);
-                    $con = mysqli_connect("localhost","root");
-                    mysqli_select_db($con, "lab3");
-                     $query = "INSERT INTO areas (prog_id, area) VALUES ('".$prog_id."','".$area."')";
-                    // echo $query;
-                    mysqli_query($con, $query);
-            ?>
-
-            
-            You have successfully completed trial!
-            <p>
-            <input type="button" value="Return" id=button1 name=button1 onclick="go_home()">    
-        </h2>
-        <script language=Javascript>
-            function go_home(){
-                window.location.assign("addarea.php");
-            }
-        </script>
-            
-=======
                 $con = mysqli_connect("localhost","root");
                 if(! $con ) {
                     die('Could not connect: ' . mysqli_error());
@@ -111,6 +80,5 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     
->>>>>>> branch_achal
     </body>
 </html>

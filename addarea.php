@@ -16,68 +16,6 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-<<<<<<< HEAD
-<body>
-
-  <?php
-                    $con = mysqli_connect("localhost","root");
-                    mysqli_select_db($con, "lab3");
-                     $query = "SELECT * FROM programs";
-                     mysqli_query($con, $query);
-                    if(! $con ) {
-                      die('Could not connect: ' . mysqli_error());
-                    }
-                    $result = mysqli_query($con, $query);
-                    if (mysqli_num_rows($result) > 0) {
-                      
-                      ?>
-                      <div class="container">
-                      <h2 class="text-center my-4">Add Area</h2>
-                      <div id="newBugForm" class="container">
-                          <form action="addarea2.php" method="post">
-                              <div class="row">
-                                  <div class="col-12 col-md-4">
-                                     <div class="form-group">
-                                          <label for="program">Program</label>
-                                          <select name="prog_id" class="form-control" id="program">                      
-                      <?php
-                      while($row = mysqli_fetch_assoc($result)) {
-                         ?>
-                              <option value="<?php echo $row["prog_id"] ?>"><?php echo $row["program"] ?><h6>&nbsp-</h6> <?php echo $row["program_version"] ?><h6>&nbsp-</h6> <?php echo $row["program_release"] ?></option>        
-              <?php
-            }
-            ?>
-             </select>
-
-              <label for="name"     style="margin-top: 15px;"">Area Name</label>
-                             <input id= "area" type="text" class="form-control update" name="area" value="<?php echo $row["area"]; ?>">
-
-              </div>
-                    <button class="btn btn-primary w-80"  style="float: right" type="submit" >Submit</button>
-                    <button class="btn btn-primary w-80"  style="float: right; margin-left: 15px;" type="button" onclick="go_back()">Back</button>
-                    </div>
-                    
-
-                    </div>
-                  </div>     
-
-            </form>
-        </div>
-    </div>     
-             <?php
-         } else {
-            echo "0 results";
-         }
-            ?>
-
-
-                     
-    
-
-    
-    
-
-=======
 <?php   
         session_start();
         if(isset($_SESSION['last_action']))
@@ -154,7 +92,6 @@
             echo "No Program Found: Please add program first!!";
         }
         ?>
->>>>>>> branch_achal
 
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -17,9 +17,6 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-<<<<<<< HEAD
-<body>
-=======
     <?php   
         session_start();
         if(isset($_SESSION['last_action']))
@@ -53,7 +50,6 @@
       </li>
     </ul>
     <?php endif; ?>
->>>>>>> branch_achal
     <div class="container">
         <h2 class="text-center my-4">Edit Area</h2>
 
@@ -68,23 +64,6 @@
             </tr>
           </thead>
           <?php
-<<<<<<< HEAD
-                    $area_id = isset($_GET['area_id']) ? $_GET['area_id'] : '0';
-                    $area = isset($_GET['area']) ? $_GET['area'] : '0';
-                    // $area = $_POST['area'];
-                    $prog_id = isset($_GET['prog_id']) ? $_GET['prog_id'] : '0';
-                    $con = mysqli_connect("localhost","root");
-                    mysqli_select_db($con, "lab3");
-                    $query = "UPDATE areas SET area ='".$area."' where area_id = '".$area_id."';";
-                    mysqli_query($con, $query);
-                    $query = "SELECT * FROM areas where prog_id ='".$prog_id."';";    
-                    mysqli_query($con, $query);
-                    if(! $con ) {
-            die('Could not connect: ' . mysqli_error());
-         }
-         $result = mysqli_query($con, $query);
-            ?>
-=======
           $con = mysqli_connect("localhost","root");
               if(! $con ) {
                 die('Could not connect: ' . mysqli_error());
@@ -112,7 +91,6 @@
               $result = mysqli_query($con, $query2);
 
           ?>
->>>>>>> branch_achal
           <tbody>
             <?php
               if (mysqli_num_rows($result) > 0) {
@@ -149,18 +127,9 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript">
-<<<<<<< HEAD
-      $(document).ready(function () {
-  $('#dtBasicExample').DataTable();
-  $('.dataTables_length').addClass('bs-select');
-});
-     function go_back(){
-        window.location.replace("../programtable.php");
-=======
 
      function go_back(){
         window.location.assign("../programtable.php");
->>>>>>> branch_achal
       }
       function dance(area_id)
       {

@@ -16,53 +16,6 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-<<<<<<< HEAD
-<body>
-
-   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-<li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-           Area
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Add area</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-<li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown link
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown link
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-    </ul>
-  </div>
-</nav>
-=======
 <?php   
         session_start();
         if(isset($_SESSION['last_action']))
@@ -97,27 +50,18 @@
         </ul>
       <?php endif; ?>
 
->>>>>>> branch_achal
     
 
     <div class="container" style="">
 
         <h2 class="text-center my-4">Add Employee</h2>
-<<<<<<< HEAD
-        <form name="theform" action="page2.php" method= "POST" >
-=======
         <form name="theform"  action="emp_add.php" method= "POST" onsubmit="return validate()" >
->>>>>>> branch_achal
         <div id="addempForm">
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
                  <label for="name">Name</label>
-<<<<<<< HEAD
-                 <input type="text" class="form-control" id="problem-summary" name="name" placeholder="">
-=======
                  <input type="text" class="form-control" id="problem-summary" name="name" placeholder="" required maxlength="32">
->>>>>>> branch_achal
               </div>
             </div> 
           </div>
@@ -126,11 +70,7 @@
             <div class="col-md-6">
               <div class="form-group">
                  <label for="username">User Name</label>
-<<<<<<< HEAD
-                 <input type="text" class="form-control" id="problem-summary" name="username" placeholder="">
-=======
                  <input type="text" class="form-control" id="problem-summary" name="username" placeholder="" required maxlength="32">
->>>>>>> branch_achal
               </div>
             </div> 
           </div>
@@ -138,11 +78,7 @@
             <div class="col-md-6">
               <div class="form-group">
                  <label for="password">Password</label>
-<<<<<<< HEAD
-                 <input type="password" class="form-control" id="problem-summary" name="password" placeholder="">
-=======
                  <input type="password" class="form-control" id="problem-summary" name="password" placeholder="" required maxlength="32">
->>>>>>> branch_achal
               </div>
             </div> 
           </div>
@@ -150,11 +86,7 @@
             <div class="col-md-6">
               <div class="form-group">
                  <label for="name">User Level</label>
-<<<<<<< HEAD
-                 <input type="text" class="form-control" id="problem-summary" name="userlevel" placeholder="">
-=======
                  <input type="number" class="form-control" id="userlevel" name="userlevel" placeholder="" required>
->>>>>>> branch_achal
               </div>
             </div> 
           </div>
@@ -198,10 +130,6 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript">
-<<<<<<< HEAD
-       function go_back(){
-        window.location.replace("maintaindb.php");
-=======
        function validate(){
           var x=document.getElementById("userlevel").value;
           if(x>3 || x<1){
@@ -215,7 +143,6 @@
 
        function go_back(){
         window.location.assign("maintaindb.php");
->>>>>>> branch_achal
       }
     </script>
 

@@ -16,23 +16,6 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-<<<<<<< HEAD
-<body>
- <h2 class="text-center my-4">Editable Area</h2>
-
-         <?php
-                    $area_id = $_GET['area_id'];
-                    $con = mysqli_connect("localhost","root");
-                    mysqli_select_db($con, "lab3");
-                    $query = "SELECT * FROM areas where area_id ='".$area_id."';";    
-                    mysqli_query($con, $query);
-                    if(! $con ) {
-            die('Could not connect: ' . mysqli_error());
-         }
-         $result = mysqli_query($con, $query);
-
-            ?>
-=======
     <?php   
         session_start();
         if(isset($_SESSION['last_action']))
@@ -79,7 +62,6 @@
             
             $result = mysqli_query($con, $query1);
           ?>
->>>>>>> branch_achal
           
        <table>
           <tbody>
@@ -88,10 +70,7 @@
             while($row = mysqli_fetch_assoc($result)) {
                ?>
                <tr>
-<<<<<<< HEAD
-=======
                 
->>>>>>> branch_achal
                 <div id="addempForm" class="container">
                   <div class="row ">
                         <div class="col-md-6">
@@ -114,11 +93,7 @@
                         <div class="col-md-6">
                           <div class="form-group">
                              <label for="name">Area Name</label>
-<<<<<<< HEAD
-                             <input id= "update" type="text" class="form-control update" name="area" value="<?php echo $row["area"]; ?>">
-=======
                              <input id= "update" type="text" class="form-control update" name="area" value="<?php echo $row["area"]; ?>" required maxlength="32"/>
->>>>>>> branch_achal
                           </div>
                         </div> 
                       </div>
@@ -132,18 +107,6 @@
                         </div> 
                       </div>
 
-<<<<<<< HEAD
-
-                </div>
-              </tr>
-            
-
-               <?php
-                  }
-                }else {
-            echo "0 results";
-         }
-=======
                 </div>
                 
               </tr>            
@@ -152,7 +115,6 @@
                 }else {
                   echo "0 results";
                 }
->>>>>>> branch_achal
                ?>
        
         </tbody>
@@ -171,10 +133,6 @@
       
       function dance(pid,aid)
       {
-<<<<<<< HEAD
-        var area = document.getElementById("update").value;
-        window.open("../editarea.php/?prog_id="+pid+"&area_id="+aid+"&area="+area,"_self");
-=======
         // document.getElementById("update").required;
         var area = document.getElementById("update").value;
         if(area===""){
@@ -183,7 +141,6 @@
         else{
           window.open("../editarea.php/?prog_id="+pid+"&area_id="+aid+"&area="+area,"_self");  
         }        
->>>>>>> branch_achal
       }
     </script>
 </body>

@@ -16,10 +16,6 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-<<<<<<< HEAD
-<body>
-    
-=======
   <?php 
 
         session_start();
@@ -55,7 +51,6 @@
           </li>
         </ul>
       <?php endif; ?>
->>>>>>> branch_achal
 
     <div class="container">
         <h2 class="text-center my-4">Show All Program</h2>
@@ -75,11 +70,7 @@
              <?php
                     
                     $con = mysqli_connect("localhost","root");
-<<<<<<< HEAD
-                    mysqli_select_db($con, "lab3");
-=======
                     mysqli_select_db($con, "bughound");
->>>>>>> branch_achal
                      $query = "SELECT * FROM programs";
                      mysqli_query($con, $query);
                     if(! $con ) {
@@ -107,14 +98,6 @@
         
     </div>
 
-<<<<<<< HEAD
-    
-    
-
-
-
-=======
->>>>>>> branch_achal
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -123,11 +106,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
      <script type="text/javascript">
      function go_back(){
-<<<<<<< HEAD
-        window.location.replace("maintaindb.php");
-=======
         window.location.assign("maintaindb.php");
->>>>>>> branch_achal
       }
     </script>
 

@@ -16,14 +16,6 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-<<<<<<< HEAD
-<body>
-    <?php session_start(); ?>
-    <?php if($_SESSION['userlevel']==3): ?>
-    <div class="container" style="">
-        <h2 class="text-center my-4">Database Maintenance</h2>
-
-=======
 <?php   
         
         session_start();
@@ -60,7 +52,6 @@
       <?php endif; ?>
     <div class="container" style="">
         <h2 class="text-center my-4">Database Maintenance</h2>
->>>>>>> branch_achal
         <div id="addempForm">
           <div class="row">
             <div class="col-md-6">
@@ -122,11 +113,7 @@
             <div class="col-md-6">
               <div class="form-group">
                  <label for="name" style="font-size: 35px;margin-right: 28px;">Export Areas</label>
-<<<<<<< HEAD
-                 <button class="btn btn-info w-80" style="margin-left: 20px" type="button" >Click me!</button>
-=======
                  <button class="btn btn-info w-80" style="margin-left: 20px" type="button" onclick="go_exportarea()" >Click me!</button>
->>>>>>> branch_achal
               </div>
             </div> 
           </div>
@@ -138,11 +125,7 @@
               
           </div>
       </div>
-<<<<<<< HEAD
-      <?php else: header("Location: home.php"); endif; ?>
-=======
       
->>>>>>> branch_achal
       <script type="text/javascript">
         function go_addprogram(){
           window.location.assign("addprogram.php");
@@ -165,12 +148,9 @@
         function go_editemp(){
          window.location.assign("showemp.php"); 
         }
-<<<<<<< HEAD
-=======
         function go_exportarea(){
          window.location.assign("exportarea.php"); 
         }
->>>>>>> branch_achal
         
       </script>
           

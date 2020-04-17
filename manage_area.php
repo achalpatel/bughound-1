@@ -16,11 +16,6 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-<<<<<<< HEAD
-<body>
-    
-
-=======
     <?php   
         session_start();
         if(isset($_SESSION['last_action']))
@@ -55,7 +50,6 @@
       </li>
     </ul>
     <?php endif; ?>
->>>>>>> branch_achal
     <div class="container">
         <h2 class="text-center my-4">Manage Area</h2>
        <table class="table">
@@ -69,11 +63,7 @@
           <tbody>
           	<?php
           		$con = mysqli_connect("localhost","root");
-<<<<<<< HEAD
-                mysqli_select_db($con, "lab3");
-=======
                 mysqli_select_db($con, "bughound");
->>>>>>> branch_achal
                 $query = "SELECT * FROM areas";
                 mysqli_query($con, $query);
                 if(! $con ) {
