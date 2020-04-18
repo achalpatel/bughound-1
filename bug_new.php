@@ -35,14 +35,20 @@
     $r_by=$_POST['reported-by'];
     $r_date=$_POST['reported-date'];
 
+    echo "prog = ".$program;
     echo "Date = ".$r_date;
+    echo "type = ".$r_type;
+    echo "sev = ".$severity;
+    echo "sum = ".$summary;
+    echo "prob = ".$problem;
+    echo "by = ".$r_by;
 
         
-    $query="INSERT INTO bug(Program, Report_type, Severity, Problem_Summary, Reproducable, Problem, Reported_By, Reported_Date) 
-            Values ($program, $r_type, $severity, $summary, $reproduce, $problem, $r_by, STR_TO_DATE('$r_date'))";
+    $query="INSERT INTO bug(Program, Report_type, Severity, Problem_Summary, Reproducable, Problem, Reported_By, Report_Date) 
+            Values ('".$program."', '".$r_type."', '".$severity."', '".$summary."', '".$reproduce."', '".$problem."', '".$r_by."', '".$r_date."');";
     
     $result=mysqli_query($con,$query);
-    if(mysqli_num_rows($result)>0){
+    if($result){
         echo "Bug submitted";
     }
     else{
