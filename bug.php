@@ -17,7 +17,18 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
+    <?php
+        $con = mysqli_connect("localhost","root");
+        if(! $con ) {
+            die('Could not connect: ' . mysqli_error());
+          }
+          mysqli_select_db($con, "bughound_test1");
+          $query_prog="SELECT prog_id, program FROM programs";
+        //   $query_emp="SELECT prog_id, program FROM programs ";
+          $result_prog=mysqli_query($con, $query_prog);
+          
+
+    ?>
 
     <div class="container">
         <h2 class="text-center my-4">New Bug Report Entry Page</h2>
@@ -26,25 +37,19 @@
                 <div class="row">
                     <div class="col-12 col-md-4">
                         <div class="form-group">
-                            <label for="program">Program</label>
+                            <label for="program">Program</label>                            
                             <select class="form-control" id="program">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </select>
+                            <?php while($row_prog=mysqli_fetch_assoc($result_prog)) { ?>                        
+                              <?php echo "<option value=".$row_prog['program'].">". $row_prog['program']." </option>"; ?>
+                            <?php } ?>
+                            </select>                            
                           </div>
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label for="report-type">Report type</label>
                             <select class="form-control" id="report-type">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
+                              
                             </select>
                           </div>
                     </div>
