@@ -18,14 +18,23 @@
 </head>
 <body>
     <?php
+        session_start();
+        if(isset($_SESSION['username'])){
+            echo 'Username - '.$_SESSION['username']." ";
+            echo 'User Level - '.$_SESSION['userlevel'];
+        }
+        else{
+            header("Location: index.php");
+        }
         $con = mysqli_connect("localhost","root");
         if(! $con ) {
             die('Could not connect: ' . mysqli_error());
           }
           mysqli_select_db($con, "bughound_test1");
           $query_prog="SELECT prog_id, program FROM programs";
-        //   $query_emp="SELECT prog_id, program FROM programs ";
+          $query_emp="SELECT emp_id, name  FROM employees ";
           $result_prog=mysqli_query($con, $query_prog);
+          $result_emp=mysqli_query($con, $query_emp);
           
 
     ?>
@@ -40,7 +49,7 @@
                             <label for="program">Program</label>                            
                             <select class="form-control" id="program">
                             <?php while($row_prog=mysqli_fetch_assoc($result_prog)) { ?>                        
-                              <?php echo "<option value=".$row_prog['program'].">". $row_prog['program']." </option>"; ?>
+                              <?php echo "<option value=".$row_prog['prog_id'].">". $row_prog['program']." </option>"; ?>
                             <?php } ?>
                             </select>                            
                           </div>
@@ -49,7 +58,12 @@
                         <div class="form-group">
                             <label for="report-type">Report type</label>
                             <select class="form-control" id="report-type">
-                              
+                                <option value="Coding Error">Coding Error</option>
+                                <option value="Design Issue">Design Issue</option>
+                                <option value="Suggestion">Suggestion</option>
+                                <option value="Documentation">Documentation</option>
+                                <option value="Hardware">Hardware</option>
+                                <option value="Query">Query</option>                        
                             </select>
                           </div>
                     </div>
@@ -57,11 +71,9 @@
                         <div class="form-group">
                             <label for="severity">Severity</label>
                             <select class="form-control" id="severity">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
+                              <option value="Minor">Minor</option>
+                              <option value="Serious">Serious</option>
+                              <option value="Fatal">Fatal</option>                              
                             </select>
                           </div>
                     </div>
@@ -78,11 +90,8 @@
                         <div class="form-group">
                             <label for="reporductible">Reproductible?</label>
                             <select class="form-control" id="reporductible">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
+                              <option value="Yes">Yes</option>
+                              <option value="No">No</option>
                             </select>
                           </div>
                     </div>
@@ -99,12 +108,10 @@
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="reported-by">Reported by</label>
-                            <select class="form-control" id="reported-by">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
+                            <select class="form-control" id="reported-by">                              
+                              <?php while($row_emp=mysqli_fetch_assoc($result_emp)) { ?>                        
+                              <?php echo "<option value=".$row_emp['emp_id'].">". $row_emp['name']." </option>"; ?>
+                            <?php } ?> 
                             </select>
                           </div>
                     </div>
