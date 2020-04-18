@@ -102,7 +102,7 @@
                           <div class="form-group">
                              <label for="name"></label>
                              <button  type="submit" class="btn  btn-primary" style="float:" 
-                             onclick="dance(<?php echo $row["prog_id"]; ?>,<?php echo $row["area_id"]; ?>);">Save</button>
+                             onclick="dance(<?php echo $row['prog_id']; ?>,<?php echo $row['area_id']; ?>);">Save</button>
                           </div>
                         </div> 
                       </div>
