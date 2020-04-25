@@ -34,7 +34,32 @@
     $problem=$_POST['problem'];
     $r_by=$_POST['reported-by'];
     $r_date=$_POST['reported-date'];
-
+    // other fields
+    if($_SESSION['userlevel']!=1){
+        $area=$_POST['function-area'];
+        $assigned_to=$_POST['assigned-to'];
+        $comments=$_POST['comments'];
+        $status=$_POST['status'];
+        $priority=$_POST['priority'];
+        $resolution=$_POST['resolution'];
+        $resolution_v=$_POST['resolution-v'];
+        $resolved_by=$_POST['resolved-by'];
+        $resolved_date=$_POST['resolved-date'];
+        $tested_by=$_POST['tested-by'];
+        $tested_date=$_POST['tested-date'];
+        $treat=$_POST['treat-as'];
+        $query="INSERT INTO bug(Program, Report_type, Severity, Problem_Summary, Reproducable, Problem, Reported_By, Report_Date,
+            Functional_Area, Assigned_To, Comments, Status_bug, Priority, Resolution, Resolution_Version, Resolved_By, Resolve_Date,
+            Tested_By, Test_Date, Deferred) 
+            Values ('".$program."', '".$r_type."', '".$severity."', '".$summary."', '".$reproduce."', '".$problem."', '".$r_by."', '".$r_date."'
+            ,'".$area."', '".$assigned_to."', '".$comments."', '".$status."', '".$priority."', '".$resolution."', '".$resolution_v."',
+            '".$resolved_by."', '".$resolved_date."', '".$tested_by."', '".$tested_date."', '".$treat."');";
+    }
+    else{
+        $query="INSERT INTO bug(Program, Report_type, Severity, Problem_Summary, Reproducable, Problem, Reported_By, Report_Date) 
+            Values ('".$program."', '".$r_type."', '".$severity."', '".$summary."', '".$reproduce."', '".$problem."', '".$r_by."', '".$r_date."');";
+    }
+    
     echo "prog = ".$program;
     echo "Date = ".$r_date;
     echo "type = ".$r_type;
@@ -44,8 +69,6 @@
     echo "by = ".$r_by;
 
         
-    $query="INSERT INTO bug(Program, Report_type, Severity, Problem_Summary, Reproducable, Problem, Reported_By, Report_Date) 
-            Values ('".$program."', '".$r_type."', '".$severity."', '".$summary."', '".$reproduce."', '".$problem."', '".$r_by."', '".$r_date."');";
     
     $result=mysqli_query($con,$query);
     if($result){

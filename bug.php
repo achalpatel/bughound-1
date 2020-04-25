@@ -68,10 +68,12 @@
                 die('Could not connect: ' . mysqli_error());
             }
             mysqli_select_db($con, "bughound_test1");
-            $query_prog="SELECT prog_id, program FROM programs";
+            $query_prog="SELECT * FROM programs";
             $query_emp="SELECT emp_id, name  FROM employees ";
+            $query_area="SELECT area_id, area FROM areas ";
             $result_prog=mysqli_query($con, $query_prog);
             $result_emp=mysqli_query($con, $query_emp);
+            // $result_area=mysqli_query($con, $query_area);
         ?>
 
     
@@ -79,14 +81,14 @@
     <div class="container">
         <h2 class="text-center my-4">New Bug Report Entry Page</h2>
         <div id="newBugForm" class="container">
-            <form action="<?php if($_SESSION['userlevel']==1){ echo "bug_new.php"; }?>" method="POST">                
+            <form action="bug_new.php" method="POST">                
                 <div class="row">
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label for="program">Program</label>                            
                             <select class="form-control" id="program" name="program">
                             <?php while($row_prog=mysqli_fetch_assoc($result_prog)) { ?>                        
-                            <?php echo "<option value=".$row_prog['prog_id'].">". $row_prog['program']." </option>"; ?>
+                            <?php echo "<option value=".$row_prog['prog_id'].">". $row_prog['program']."-".$row_prog['program_release']."-".$row_prog['program_version']." </option>"; ?>
                             <?php } ?>
                             </select>                            
                         </div>
@@ -148,7 +150,7 @@
                             <select class="form-control" id="reported-by" name="reported-by">                              
                             <?php while($row_emp=mysqli_fetch_assoc($result_emp)) { ?>                        
                             <?php echo "<option value=".$row_emp['emp_id'].">". $row_emp['name']." </option>"; ?>
-                            <?php } ?> 
+                            <?php } mysqli_data_seek( $result_emp, 0 );?> 
                             </select>
                         </div>
                     </div>
@@ -164,7 +166,7 @@
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label for="functional-area">Functional Area</label>
-                                <select class="form-control" id="report-type">
+                                <select class="form-control" id="function-area" name="function-area">
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -176,12 +178,10 @@
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label for="assigned-to">Assigned to</label>
-                                <select class="form-control" id="assigned-to">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                <select class="form-control" id="assigned-to" name="assigned-to">
+                                <?php while($row_emp=mysqli_fetch_assoc($result_emp)) { ?>                        
+                                <?php echo "<option value=".$row_emp['emp_id'].">". $row_emp['name']." </option>"; ?>
+                                <?php } mysqli_data_seek( $result_emp, 0 );?> 
                                 </select>
                             </div>
                         </div>
@@ -191,7 +191,7 @@
                         <div class="col-12 col-md-12">
                             <div class="form-group">
                                 <label for="comments">Comments</label>
-                                <textarea class="form-control" id="comments" rows="2"></textarea>
+                                <textarea class="form-control" id="comments" name="comments" rows="2"></textarea>
                             </div>
                         </div>
                     </div>
@@ -200,43 +200,46 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="status">Status</label>
-                                <select class="form-control" id="status">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                <select class="form-control" id="status" name="status">
+                                <option>Open</option>
+                                <option>Closed</option>
+                                <option>Resolved</option>                            
                                 </select>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="priority">Priority</label>
-                                <select class="form-control" id="priority">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                <select class="form-control" id="priority" name="priority">
+                                <option>Fix immediately</option>
+                                <option>Fix as soon as possible</option>
+                                <option>Fix before next milestone</option>
+                                <option>Fix before release</option>
+                                <option>Fix if possible</option>
+                                <option>Optional</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="resolution">Resolution</label>
-                                <select class="form-control" id="resolution">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                <select class="form-control" id="resolution" name="resolution">
+                                <option>Pending</option>
+                                <option>Fixed</option>
+                                <option>Irreproducable</option>
+                                <option>Deferred</option>
+                                <option>As designed</option>
+                                <option>Withdrawn by reporter</option>
+                                <option>Need more info</option>
+                                <option>Disagree with suggestion</option>
+                                <option>Duplicate</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="resolution-v">Resolution version</label>
-                                <select class="form-control" id="resolution-v">
+                                <select class="form-control" id="resolution-v" name="resolution-v">
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -252,12 +255,10 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="resolved-by">Resolved by</label>
-                                <select class="form-control" id="resolved-by">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                <select class="form-control" id="resolved-by" name="resolved-by">
+                                <?php while($row_emp=mysqli_fetch_assoc($result_emp)) { ?>                        
+                                <?php echo "<option value=".$row_emp['emp_id'].">". $row_emp['name']." </option>"; ?>
+                                <?php } mysqli_data_seek( $result_emp, 0 );?> 
                                 </select>
                             </div>
                         </div>
@@ -270,12 +271,10 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="tested-by">Tested by</label>
-                                <select class="form-control" id="tested-by">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                <select class="form-control" id="tested-by" name="tested-by">
+                                <?php while($row_emp=mysqli_fetch_assoc($result_emp)) { ?>                        
+                                <?php echo "<option value=".$row_emp['emp_id'].">". $row_emp['name']." </option>"; ?>
+                                <?php } mysqli_data_seek( $result_emp, 0 );?> 
                                 </select>
                             </div>
                         </div>
@@ -287,8 +286,8 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="treat-as">Treat as?</label>
-                                <select class="form-control" id="treat-as">
+                                <label for="treat-as">Treat as deferred?</label>
+                                <select class="form-control" id="treat-as" name="treat-as">
                                 <option>YES</option>
                                 <option>NO</option>
                                 
