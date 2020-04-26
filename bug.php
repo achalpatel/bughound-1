@@ -81,7 +81,7 @@
     <div class="container">
         <h2 class="text-center my-4">New Bug Report Entry Page</h2>
         <div id="newBugForm" class="container">
-            <form action="bug_new.php" method="POST">                
+            <form action="bug_new.php" method="POST" enctype="multipart/form-data">                
                 <div class="row">
                     <div class="col-12 col-md-4">
                         <div class="form-group">
@@ -289,9 +289,13 @@
                                 <label for="treat-as">Treat as deferred?</label>
                                 <select class="form-control" id="treat-as" name="treat-as">
                                 <option>YES</option>
-                                <option>NO</option>
-                                
+                                <option>NO</option>                                
                                 </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <input class="form-control-file" type="file" name="file1[]" id="file1" multiple>                                
                             </div>
                         </div>
                     </div>
