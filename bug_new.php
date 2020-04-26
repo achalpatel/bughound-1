@@ -63,13 +63,13 @@
             Values ('".$program."', '".$r_type."', '".$severity."', '".$summary."', '".$reproduce."', '".$problem."', '".$r_by."', '".$r_date."');";
     }
     
-    echo "prog = ".$program;
-    echo "Date = ".$r_date;
-    echo "type = ".$r_type;
-    echo "sev = ".$severity;
-    echo "sum = ".$summary;
-    echo "prob = ".$problem;
-    echo "by = ".$r_by;
+    // echo "prog = ".$program;
+    // echo "Date = ".$r_date;
+    // echo "type = ".$r_type;
+    // echo "sev = ".$severity;
+    // echo "sum = ".$summary;
+    // echo "prob = ".$problem;
+    // echo "by = ".$r_by;
 
         
     
