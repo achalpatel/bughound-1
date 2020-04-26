@@ -295,6 +295,7 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
+                                <label>Attachments</label>
                                 <input class="form-control-file" type="file" name="file1[]" id="file1" multiple>                                
                             </div>
                         </div>

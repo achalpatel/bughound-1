@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2020 at 11:26 PM
+-- Generation Time: Apr 26, 2020 at 07:15 AM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -79,6 +79,28 @@ INSERT INTO `areas` (`area_id`, `prog_id`, `area`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `attachment`
+--
+
+CREATE TABLE `attachment` (
+  `attach_id` int(11) NOT NULL,
+  `bug` int(11) NOT NULL,
+  `file_name` varchar(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `attachment`
+--
+
+INSERT INTO `attachment` (`attach_id`, `bug`, `file_name`) VALUES
+(1018, 1031, 'abc.docx'),
+(1019, 1032, 'abc.docx'),
+(1020, 1033, 'abc.pdf'),
+(1021, 1034, 'fileb.txt');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `bug`
 --
 
@@ -87,7 +109,7 @@ CREATE TABLE `bug` (
   `Program` int(20) NOT NULL,
   `Report_type` int(20) NOT NULL,
   `Severity` varchar(10) NOT NULL,
-  `Problem_Summary` varchar(50) DEFAULT NULL,
+  `Problem_Summary` text,
   `Reproducable` varchar(4) DEFAULT NULL,
   `Problem` varchar(100) DEFAULT NULL,
   `Suggested_Fix` varchar(50) DEFAULT NULL,
@@ -95,8 +117,8 @@ CREATE TABLE `bug` (
   `Report_Date` date NOT NULL,
   `Functional_Area` int(20) DEFAULT NULL,
   `Assigned_To` int(10) DEFAULT NULL,
-  `Comments` varchar(50) DEFAULT NULL,
-  `Status` varchar(10) DEFAULT NULL,
+  `Comments` text,
+  `Status_bug` varchar(10) DEFAULT NULL,
   `Priority` varchar(35) DEFAULT NULL,
   `Resolution` varchar(10) DEFAULT NULL,
   `Resolution_Version` int(10) DEFAULT NULL,
@@ -104,20 +126,25 @@ CREATE TABLE `bug` (
   `Resolve_Date` date DEFAULT NULL,
   `Tested_By` int(10) DEFAULT NULL,
   `Test_Date` date DEFAULT NULL,
-  `Deferred` varchar(4) DEFAULT NULL,
-  `Attachment_type` int(10) DEFAULT NULL,
-  `Attachment` mediumblob
+  `Deferred` varchar(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `bug`
 --
 
-INSERT INTO `bug` (`bug_id`, `Program`, `Report_type`, `Severity`, `Problem_Summary`, `Reproducable`, `Problem`, `Suggested_Fix`, `Reported_By`, `Report_Date`, `Functional_Area`, `Assigned_To`, `Comments`, `Status`, `Priority`, `Resolution`, `Resolution_Version`, `Resolved_By`, `Resolve_Date`, `Tested_By`, `Test_Date`, `Deferred`, `Attachment_type`, `Attachment`) VALUES
-(1000, 1, 0, 'Minor', 'abc', 'Yes', 'd', NULL, 1000, '2020-04-18', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(1001, 1, 0, 'Minor', 'Test', 'Yes', 'Testing', NULL, 1001, '2020-04-18', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(1002, 1, 0, 'Minor', 'dd', 'Yes', 'ss', NULL, 1001, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(1003, 6, 0, 'Minor', 'Test2', 'Yes', 'Just testing bro', NULL, 1001, '2020-04-18', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `bug` (`bug_id`, `Program`, `Report_type`, `Severity`, `Problem_Summary`, `Reproducable`, `Problem`, `Suggested_Fix`, `Reported_By`, `Report_Date`, `Functional_Area`, `Assigned_To`, `Comments`, `Status_bug`, `Priority`, `Resolution`, `Resolution_Version`, `Resolved_By`, `Resolve_Date`, `Tested_By`, `Test_Date`, `Deferred`) VALUES
+(1000, 1, 0, 'Minor', 'abc', 'Yes', 'd', NULL, 1000, '2020-04-18', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1001, 1, 0, 'Minor', 'Test', 'Yes', 'Testing', NULL, 1001, '2020-04-18', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1002, 1, 0, 'Minor', 'dd', 'Yes', 'ss', NULL, 1001, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1003, 6, 0, 'Minor', 'Test2', 'Yes', 'Just testing bro', NULL, 1001, '2020-04-18', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1028, 1, 0, 'Minor', '', 'Yes', '', NULL, 1000, '0000-00-00', 1, 1000, '', 'Open', 'Fix immediately', 'Pending', 1, 1000, '0000-00-00', 1000, '0000-00-00', 'YES'),
+(1029, 1, 0, 'Minor', '', 'Yes', '', NULL, 1000, '0000-00-00', 1, 1000, '', 'Open', 'Fix immediately', 'Pending', 1, 1000, '0000-00-00', 1000, '0000-00-00', 'YES'),
+(1030, 1, 0, 'Minor', '', 'Yes', '', NULL, 1000, '0000-00-00', 1, 1000, '', 'Open', 'Fix immediately', 'Pending', 1, 1000, '0000-00-00', 1000, '0000-00-00', 'YES'),
+(1031, 1, 0, 'Minor', '', 'Yes', '', NULL, 1000, '0000-00-00', 1, 1000, '', 'Open', 'Fix immediately', 'Pending', 1, 1000, '0000-00-00', 1000, '0000-00-00', 'YES'),
+(1032, 4, 0, 'Minor', '', 'Yes', '', NULL, 1000, '0000-00-00', 1, 1000, '', 'Open', 'Fix immediately', 'Pending', 1, 1000, '0000-00-00', 1000, '0000-00-00', 'YES'),
+(1033, 1, 0, 'Minor', '', 'Yes', '', NULL, 1000, '0000-00-00', 1, 1000, '', 'Open', 'Fix immediately', 'Pending', 1, 1000, '0000-00-00', 1000, '0000-00-00', 'YES'),
+(1034, 1, 0, 'Minor', '', 'Yes', '', NULL, 1000, '0000-00-00', 1, 1000, '', 'Open', 'Fix immediately', 'Pending', 1, 1000, '0000-00-00', 1000, '0000-00-00', 'YES');
 
 -- --------------------------------------------------------
 
@@ -186,6 +213,13 @@ ALTER TABLE `areas`
   ADD KEY `foreign_key` (`prog_id`);
 
 --
+-- Indexes for table `attachment`
+--
+ALTER TABLE `attachment`
+  ADD PRIMARY KEY (`attach_id`),
+  ADD KEY `bug` (`bug`);
+
+--
 -- Indexes for table `bug`
 --
 ALTER TABLE `bug`
@@ -220,10 +254,16 @@ ALTER TABLE `areas`
   MODIFY `area_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
+-- AUTO_INCREMENT for table `attachment`
+--
+ALTER TABLE `attachment`
+  MODIFY `attach_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1022;
+
+--
 -- AUTO_INCREMENT for table `bug`
 --
 ALTER TABLE `bug`
-  MODIFY `bug_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1004;
+  MODIFY `bug_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1035;
 
 --
 -- AUTO_INCREMENT for table `employees`
@@ -246,6 +286,12 @@ ALTER TABLE `programs`
 --
 ALTER TABLE `areas`
   ADD CONSTRAINT `foreign_key` FOREIGN KEY (`prog_id`) REFERENCES `programs` (`prog_id`);
+
+--
+-- Constraints for table `attachment`
+--
+ALTER TABLE `attachment`
+  ADD CONSTRAINT `attachment_ibfk_1` FOREIGN KEY (`bug`) REFERENCES `bug` (`bug_id`);
 
 --
 -- Constraints for table `bug`
