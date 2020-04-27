@@ -17,48 +17,109 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
+  <?php
+            $con = mysqli_connect("localhost","root");
+            if(! $con ) {
+                die('Could not connect: ' . mysqli_error());
+            }
+            mysqli_select_db($con, "bughound");
+            $query_prog="SELECT * FROM programs";
+            $query_emp="SELECT emp_id, name  FROM employees ";
+            $query_area="SELECT area_id, area FROM areas ";
+            $result_prog=mysqli_query($con, $query_prog);
+            $result_emp=mysqli_query($con, $query_emp);
+            $bool=['Yes','No'];
+            $resolution=['Pending','Fixed','Irreproducable','Deferred','As designed','Withdrawn by reporter','Need more info','Disagree with suggestion','Duplicate'];
 
-    <div class="container">
+
+            // $result_area=mysqli_query($con, $query_area);
+        ?>
+  <?php
+  
+                    $bug_id = isset($_GET['bug_id']) ? $_GET['bug_id'] : '0';
+                    $con = mysqli_connect("localhost","root");
+                    if(! $con ) {
+                    die('Could not connect: ' . mysqli_error());
+                    }
+                    
+                    
+                    mysqli_select_db($con, "bughound");
+                    $bug_id=1003;
+                    echo $bug_id;
+                    //$query = "SELECT * FROM bug where bug_id = '".$bug_id."';";                                        
+                                        $query = "SELECT * FROM bug where bug_id = '1003';";                                        
+                    $result_bug = mysqli_query($con, $query);
+
+                    $row = mysqli_fetch_assoc($result_bug);
+                    echo $row['Program'];
+
+
+            ?>
+
+    
+<div class="container">
         <h2 class="text-center my-4">Update Bug Page</h2>
         <div id="newBugForm" class="container">
-            <form action="">
+            <form action="Updatebug1.php" method="POST">                
                 <div class="row">
                     <div class="col-12 col-md-4">
                         <div class="form-group">
-                            <label for="program">Program</label>
-                            <select class="form-control" id="program">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </select>
-                          </div>
+                           <?php echo"<input type='text' class='form-control' id='problem-summary' name='bug_id' value=".$bug_id.">"?> 
+                            <label for="program">Program</label>   
+                            <select class='form-control' id='program' name='program'>
+                            <!-- <?php echo"<option selected=".$row['Program'].">".$row['Program']."</option>"?>  -->
+
+                            <?php while($row_prog=mysqli_fetch_assoc($result_prog)) { 
+
+                            if($row_prog['prog_id']==$row['Program'])
+                            {
+                               echo "<option selected='".$row_prog['program']."' value='".$row_prog['prog_id']."'>".$row_prog['program']."-".$row_prog['program_release']."-".$row_prog['program_version']." </option>";
+                            }
+                            else
+                            {
+                              echo "<option value='".$row_prog['prog_id']."'>".$row_prog['program']."-".$row_prog['program_release']."-".$row_prog['program_version']." </option>";
+                            }}?>
+
+                            
+                            
+                            </select>                            
+                        </div>
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label for="report-type">Report type</label>
-                            <select class="form-control" id="report-type">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
+                            <select class="form-control" id="report-type" name="report-type">
+                                
+                                <?php $rep=['Coding Error','Design Issue','Suggestion','Documentation','Hardware','Query']; foreach($rep as $value){
+                                if ($value==$row['Report_type']) {
+                              
+                              echo "<option value='".$value."' selected='".$value."'>".$value."</option>";
+                            }else
+                            {
+                              echo "<option value=".$value.">". $value." </option>"; 
+                            }}?>  
+                                               
                             </select>
-                          </div>
+                        </div>
                     </div>
-                    <div class="col-12 col-md-4">
+                    <div class="col-12 col-md-4" onload="func()">
                         <div class="form-group">
                             <label for="severity">Severity</label>
-                            <select class="form-control" id="severity">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
+                            
+
+                             <?php echo"<select class='form-control' id='severity' name='severity' >"?>
+                             <?php $sev=['Minor','Serious','Fatal'];
+                            foreach($sev as $value){
+                                if ($value==$row['Severity']) {
+                              
+                              echo "<option value=".$value." selected='".$value."'>".$value."</option>";
+                            }else
+                            {
+                              echo "<option value=".$value.">". $value." </option>"; 
+                            }}?> 
+                            
                             </select>
-                          </div>
+                        </div>
                     </div>
                 </div>
     
@@ -66,188 +127,247 @@
                     <div class="col-12 col-md-8">
                         <div class="form-group">
                             <label for="problem-summary">Problem summary</label>
-                            <input type="text" class="form-control" id="problem-summary" placeholder="">
+                            <?php echo"<input type='text' class='form-control' id='problem-summary' name='summary' value='".$row['Problem_Summary']."' placeholder='".$row['Problem_Summary']."''>"?> 
                         </div>
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label for="reporductible">Reproductible?</label>
-                            <select class="form-control" id="reporductible">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
+                            <select class="form-control" id="reporductible" name="reproduce">
+                            <?php foreach($bool as $value){
+                                if ($value==$row['Reproducable']) {
+                              
+                              echo "<option value=".$value." selected='".$value."'>".$value."</option>";
+                            }else
+                            {
+                              echo "<option value=".$value.">". $value." </option>"; 
+                            }}?> > 
+                           
                             </select>
-                          </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12 col-md-12">
                         <div class="form-group">
                             <label for="problem">Problem</label>
-                            <textarea class="form-control" id="problem" rows="2"></textarea>
+                            <?php echo"<textarea class='form-control' id='problem' value='".$row['Problem']."' rows='2' name='problem' placeholder='".$row['Problem']."' >".$row['Problem']."</textarea>"?> 
+                            
                         </div>
                     </div>
                 </div>
+                            
+                            
+             
                 <div class="row">
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="reported-by">Reported by</label>
-                            <select class="form-control" id="reported-by">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
+                            <select class="form-control" id="reported-by" name="reported-by">                              
+                            <?php while($row_emp=mysqli_fetch_assoc($result_emp)) { ?>                        
+                            <?php 
+                            if ($row_emp['emp_id']==$row['Reported_By']) {
+                              # code...
+                              echo "<option value=".$row_emp['emp_id']." selected='".$row_emp['name']."'>". $row_emp['name']."</option>";
+                            }else
+                            {
+                              echo "<option value=".$row_emp['emp_id'].">". $row_emp['name']." </option>"; 
+                            }?>
+                            <?php } mysqli_data_seek( $result_emp, 0 );?> 
                             </select>
-                          </div>
+                        </div>
                     </div>
+                    <!-- <?php echo date($row['Report_Date']);?> -->
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="reported-date" class="d-block">Date</label>
-                            <input type="date" class="datepicker" placeholder="Date" name="reported-date" id="reported-date">
-                          </div>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-12 col-md-6">
-                        <div class="form-group">
-                            <label for="functional-area">Functional Area</label>
-                            <select class="form-control" id="report-type">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </select>
-                          </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="form-group">
-                            <label for="assigned-to">Assigned to</label>
-                            <select class="form-control" id="assigned-to">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </select>
-                          </div>
-                    </div>
-                </div>
-    
-                <div class="row">
-                    <div class="col-12 col-md-12">
-                        <div class="form-group">
-                            <label for="comments">Comments</label>
-                            <textarea class="form-control" id="comments" rows="2"></textarea>
+                            <?php echo"<input type='date' class='datepicker'value='".date($row['Report_Date'])."' placeholder='".$row['Report_Date']."' name='reported-date' id='reported-date'>"?>
                         </div>
                     </div>
                 </div>
-    
-                <div class="row">
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="status">Status</label>
-                            <select class="form-control" id="status">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </select>
+                <div id="lvl">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label for="functional-area">Functional Area</label>
+                                <select class="form-control" id="function-area" name="function-area">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="priority">Priority</label>
-                            <select class="form-control" id="priority">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="resolution">Resolution</label>
-                            <select class="form-control" id="resolution">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="resolution-v">Resolution version</label>
-                            <select class="form-control" id="resolution-v">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-    
-    
-                <div class="row">
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="resolved-by">Resolved by</label>
-                            <select class="form-control" id="resolved-by">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="resolved-date" class="d-block">Date</label>
-                            <input type="date" class="datepicker" placeholder="Date" name="resolved-date" id="resolved-date">
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="tested-by">Tested by</label>
-                            <select class="form-control" id="tested-by">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="tested-date" class="d-block">Date</label>
-                            <input type="date" class="datepicker" placeholder="Date" name="tested-date" id="tested-date">
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="treat-as">Treat as?</label>
-                            <select class="form-control" id="treat-as">
-                              <option>YES</option>
-                              <option>NO</option>
-                              
-                            </select>
-                        </div>
-                    </div>
-                </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label for="assigned-to">Assigned to</label>
+                                <select class="form-control" id="assigned-to" name="assigned-to">
 
+                             
+                                <?php while($row_emp=mysqli_fetch_assoc($result_emp)) { ?>  
+                                 <?php 
+                            if ($row_emp['emp_id']==$row['Assigned_to']) {
+                              # code...
+                              echo "<option value=".$row_emp['emp_id']." selected='".$row_emp['name']."'>".$row_emp['name']."</option>";
+                            }else
+                            {
+                              echo "<option value=".$row_emp['emp_id'].">". $row_emp['name']." </option>"; 
+                            }?>                      
+                                
+                                <?php } mysqli_data_seek( $result_emp, 0 );?> 
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <div class="form-group">
+                                <label for="comments">Comments</label>
+                                <?php echo "<textarea class='form-control id='comments' name='comments' value='".$row['Comments']."' rows='2' placeholder='".$row['Comments']."'>".$row['Comments']."</textarea>"?>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="status">Status</label>
+                                <select class="form-control" id="status" name="status">
+                                <?php $status=['Closed','Open','Resolved'];
+                                foreach($status as $val)
+                                {
+                                  if($val==$row['Status_bug'])
+                                  {
+                                 echo"<option selected='".$val."'>".$val."</option>";}
+                                 else
+                                  {
+                                  echo"<option>".$val."</option>";}
+
+                                  }?>
+                                }                     
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="priority">Priority</label>
+                                <select class="form-control" id="priority" name="priority">
+                                <?php $prio=['Fix immediately','Fix as soon as possible','Fix before next milestone','Fix before release','Fix if possible','Optional'];
+                                 foreach($prio as $val)
+                                 {
+                                  if($val==$row['Priority'])
+                                  {
+                                 echo"<option selected='".$val."'>".$val."</option>";}
+                                 else
+                                 {
+                                 echo"<option>".$val."</option>";}
+                               }?>
+                                
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="resolution">Resolution</label>
+                                <select class="form-control" id="resolution" name="resolution">
+                                  <?php foreach($resolution as $value){
+                                if ($value==$row['Resolution']) {
+                              
+                              echo "<option value=".$value." selected='".$value."'>".$value."</option>";
+                            }else
+                            {
+                              echo "<option value=".$value.">". $value." </option>"; 
+                            }}?>  
+                               
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="resolution-v">Resolution version</label>
+                                <select class="form-control" id="resolution-v" name="resolution-v">
+                                <?php echo"<option selected='".$row['Resolution_Version']."'>".$row['Resolution_Version']."</option>"?>
+
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+        
+        
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="resolved-by">Resolved by</label>
+                                <select class="form-control" id="resolved-by" name="resolved-by">
+                                <?php while($row_emp=mysqli_fetch_assoc($result_emp)) { 
+                                if ($row_emp['emp_id']==$row['Resolved_By']) {
+                              
+                              echo "<option value=".$row_emp['emp_id']." selected='".$row_emp['name']."'>".$row_emp['name']."</option>";
+                            }else
+                            {
+                              echo "<option value=".$row_emp['emp_id'].">". $row_emp['name']." </option>"; 
+                            }?>                                              
+                               
+                                <?php } mysqli_data_seek( $result_emp, 0 );?> 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="resolved-date" class="d-block">Date</label>
+                                <?php echo"<input type='date' class='datepicker' value='".date($row['Resolve_Date'])."' placeholder='".$row['Resolve_Date']."' name='resolved-date' id='resolved-date'>"?>
+                                <!-- <input type="date" class="datepicker" placeholder="Date" name="resolved-date" id="resolved-date"> -->
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="tested-by">Tested by</label>
+                                <select class="form-control" id="tested-by" name="tested-by">
+                                <?php while($row_emp=mysqli_fetch_assoc($result_emp)) {
+                                if ($row_emp['emp_id']==$row['Tested_By']) {
+                              
+                              echo "<option value=".$row_emp['emp_id']." selected='".$row_emp['name']."'>".$row_emp['name']."</option>";
+                            }else
+                            {
+                              echo "<option value=".$row_emp['emp_id'].">". $row_emp['name']." </option>"; 
+                            }?>                                                                      
+                                <!-- <?php echo "<option value=".$row_emp['emp_id'].">". $row_emp['name']." </option>"; ?> -->
+                                <?php } mysqli_data_seek( $result_emp, 0 );?> 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="tested-date" class="d-block">Date</label>
+                                <?php echo"<input type='date' class='datepicker' value='".date($row['Test_Date'])."' placeholder='".$row['Test_Date']."' name='tested-date' id='tested-date'>"?>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="treat-as">Treat as deferred?</label>
+                                <select class="form-control" id="treat-as" name="treat-as">
+                                  <?php foreach($bool as $value){
+                                if ($value==$row['Deferred']) {
+                              
+                              echo "<option value=".$value." selected='".$value."'>".$value."</option>";
+                            }else
+                            {
+                              echo "<option value=".$value.">". $value." </option>"; 
+                            }}?>  
+                                
+                                
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
@@ -276,6 +396,8 @@
         </div>
     </div>
     
+
+
 
 
 
