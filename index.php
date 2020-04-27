@@ -19,16 +19,20 @@
 <body>
 
     <?php session_start(); ?>
-    <?php if(isset($_SESSION['username'])): ?>
-    <ul class="nav justify-content-end">
+    <?php if(isset($_SESSION['username'])){
+      header("Location:home.php");
+    }
+      
+    ?>
+    <!-- <ul class="nav justify-content-end">
       <li class="nav-item">
         <a class="nav-link" href="home.php">Home</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="logout.php">Logout</a>
       </li>
-    </ul>
-    <?php endif; ?>
+    </ul> -->
+    
   <?php 
     if(isset($_SESSION['error'])){
       echo $_SESSION['error'];

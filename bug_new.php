@@ -21,6 +21,10 @@
     else{
         header("Location: index.php");
     }
+    if(!isset($_SERVER['HTTP_REFERER'])){
+        // redirect them to your desired location
+        header('location:home.php');        
+    }
     ?>
     <?php if(isset($_SESSION['username'])): ?>
         <ul class="nav justify-content-end">

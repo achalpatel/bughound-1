@@ -21,6 +21,10 @@
     else{
         header("Location: index.php");
     }
+    if(!isset($_SERVER['HTTP_REFERER'])){
+        // redirect them to your desired location
+        header('location:home.php');        
+    }
     $con = mysqli_connect("localhost","root");
     mysqli_select_db($con, "bughound_test1");
     if(! $con ) {
