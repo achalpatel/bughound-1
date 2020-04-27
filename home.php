@@ -91,7 +91,7 @@
             <div class="col-md-6">
               <div class="form-group">
                  <label for="name" style="font-size: 35px;">Add Bug</label>
-                 <button class="btn btn-info w-60" style="margin-left: 20px" type="button" onclick="go_bug()">Click me!</button>
+                 <button class="btn btn-info w-60" style="margin-left: 20px" type="button" onclick="go_bug()">Go!</button>
               </div>
             </div> 
           </div>
@@ -100,7 +100,7 @@
             <div class="col-md-6">
               <div class="form-group">
                  <label for="name" style="font-size: 35px;">Update Existing Bug</label>
-                 <button class="btn btn-info w-60" style="margin-left: 20px" type="button">Click me!</button>
+                 <button class="btn btn-info w-60" style="margin-left: 20px" type="button" onclick="go_update()">Go!</button>
               </div>
             </div> 
           </div>
@@ -109,7 +109,7 @@
             <div class="col-md-6">
               <div class="form-group">
                  <label for="name" style="font-size: 35px; margin-right: 27px;">Database Maintenance</label>
-                 <button class="btn btn-info w-60" style="margin-left: 20px" type="button" onclick="go_db()">Click me!</button>
+                 <button class="btn btn-info w-60" style="margin-left: 20px" type="button" onclick="go_db()">Go!</button>
               </div>
             </div> 
           </div>
@@ -118,6 +118,9 @@
           <script type="text/javascript">
             function go_db(){
               window.location.assign("maintaindb.php");
+            }
+            function go_update(){
+              window.location.assign("updatebug.php");
             }
             function go_bug(){
               window.location.assign("bug.php");
