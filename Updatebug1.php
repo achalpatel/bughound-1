@@ -26,7 +26,8 @@
     if(! $con ) {
         die('Could not connect: ' . mysqli_error());
     }
-    $bug_id=  $_POST['bug_id'];
+    $bug_id=1003;
+    // $bug_id=  $_POST['bug_id'];
     $program=$_POST['program'];
     $r_type=$_POST['report-type'];
     $severity=$_POST['severity'];
@@ -52,10 +53,25 @@
             Functional_Area='".$area."', Assigned_To='".$assigned_to."', Comments='".$comments."', Status_bug='".$status."', Priority='".$priority."', Resolution='".$resolution."', Resolution_Version='".$resolution_v."', Resolved_By='".$resolved_by."', Resolve_Date='".$resolved_date."',
             Tested_By='".$tested_by."', Test_Date='".$tested_date."', Deferred='".$treat."' WHERE bug_id=".$bug_id;
    
-
+        
         
     
-    $result=mysqli_query($con,$query);
+        $result=mysqli_query($con,$query);
+        $num_files=count($_FILES['file1']['tmp_name']);
+        echo "count= ".$num_files;
+        $query_file="";
+        for($i=0;$i<$num_files;$i++){
+            $filename=$_FILES['file1']['name'][$i];
+            move_uploaded_file($_FILES['file1']['tmp_name'][$i],'uploads/'.$filename);
+            // $data=file_get_contents("uploads/".$_FILES['file1']['name'][$i]);            
+            $query_file.="INSERT INTO attachment(bug, file_name) VALUES ('".$bug_id."', '".$filename."');";
+        }
+        if(mysqli_multi_query($con, $query_file)){
+            echo "Files inserted";
+        }else{
+            echo "Error".$query_file."<br>".mysqli_error($con);
+        }
+    
     if($result){
         echo "Bug Updated";
     }

@@ -342,7 +342,9 @@
     <script>
         function ff(){
             // document.getElementById("dis").innerHTML = document.getElementById("select").value;
-            window.location.assign("/bughound5/open2.php?bug_id="+<?php echo "1028"; ?>+"&filename="+document.getElementById("open-file").value);
+            if(document.getElementById("open-file").value!=null){
+                window.location.assign("/bughound5/open2.php?bug_id="+<?php echo "1028"; ?>+"&filename="+document.getElementById("open-file").value);
+            }
         }
     </script>
 

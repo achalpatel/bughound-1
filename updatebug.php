@@ -16,18 +16,62 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+<?php
+        session_start();
+        if(isset($_SESSION['last_action']))
+        {
+          if(time() - $_SESSION['last_action']>1800)
+          {
+            session_unset();
+            session_destroy();  
+          }
+        }
+        $_SESSION['last_action'] = time();
+        if(isset($_SESSION['username'])){
+            echo 'Username - '.$_SESSION['username']." ";
+            echo 'User Level - '.$_SESSION['userlevel'];
+        }
+        else{
+            header("Location: index.php");
+        }
+    ?>
 <body>
+<?php if(isset($_SESSION['username'])): ?>
+        <ul class="nav justify-content-end">
+        <li class="nav-item">
+            <a class="nav-link" href="home.php">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="logout.php">Logout</a>
+        </li>
+        </ul>
+    <?php else: ?>
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" href="index.php">Login</a>
+            </li>
+        </ul>
+  <?php endif; ?>
+    <?php if($_SESSION['userlevel']==1){ ?>
+        <style type="text/css">
+            #lvl{
+                display:None;
+            }
+        </style>
+
+    <?php } ?>
+
   <?php
             $con = mysqli_connect("localhost","root");
             if(! $con ) {
                 die('Could not connect: ' . mysqli_error());
             }
-            mysqli_select_db($con, "bughound_test1");
+            mysqli_select_db($con, "bughound_test1");            
             $query_prog="SELECT * FROM programs";
             $query_emp="SELECT emp_id, name  FROM employees ";
             $query_area="SELECT area_id, area FROM areas ";
             $result_prog=mysqli_query($con, $query_prog);
-            $result_emp=mysqli_query($con, $query_emp);
+            $result_emp=mysqli_query($con, $query_emp);            
             $bool=['Yes','No'];
             $resolution=['Pending','Fixed','Irreproducable','Deferred','As designed','Withdrawn by reporter','Need more info','Disagree with suggestion','Duplicate'];
 
@@ -60,7 +104,7 @@
 <div class="container">
         <h2 class="text-center my-4">Update Bug Page</h2>
         <div id="newBugForm" class="container">
-            <form action="Updatebug1.php" method="POST">                
+            <form action="Updatebug1.php" method="POST" enctype="multipart/form-data">                
                 <div class="row">
                     <div class="col-12 col-md-4">
                         <div class="form-group">                           
@@ -360,28 +404,21 @@
                                   <?php foreach($bool as $value){
                                 if ($value==$row['Deferred']) {
                               
-                              echo "<option value=".$value." selected='".$value."'>".$value."</option>";
-                            }else
-                            {
-                              echo "<option value=".$value.">". $value." </option>"; 
-                            }}?>  
-                                
-                                
+                                echo "<option value=".$value." selected='".$value."'>".$value."</option>";
+                                }else
+                                {
+                                echo "<option value=".$value.">". $value." </option>"; 
+                                }}?>                                                              
                                 </select>
                             </div>
                         </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Attachments</label>
+                                <input class="form-control-file" type="file" name="file1[]" id="file1" multiple>                                
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                  </div>
-                  <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="inputGroupFile01"
-                      aria-describedby="inputGroupFileAddon01">
-                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                  </div>
-                  <button class="btn btn-primary w-100 col-md-2" style="margin-left: 10px" type="submit">Add attachment</button>
                 </div>
                 
                 <div class="row mt-3">
@@ -397,11 +434,40 @@
                     </div>
                 </div>
             </form>
+            <br>
+            <div class="row">
+                <div class="col">
+                <div class="form-group">
+                    <label>Attachments</label>
+                    <?php
+                        $query_file="SELECT * from attachment WHERE bug='".$row['bug_id']."';";
+                        $result_file=mysqli_query($con, $query_file);                                    
+                    ?>
+                    <select name="open-file" id="open-file">
+                        <?php while($row_file=mysqli_fetch_array($result_file)) {  if($row_file[2]!=NULL){?>                        
+                        <?php echo "<option value=".$row_file[2].">". $row_file[2]." </option>"; ?>
+                        <?php }} mysqli_data_seek( $result_file, 0 );?>                                 
+                    </select>
+                </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                    <button name="btn" id="btn" onclick="ff()">Open</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     
-
-
+                        
+    <script>
+        function ff(){
+            // document.getElementById("dis").innerHTML = document.getElementById("select").value;
+            if(document.getElementById("open-file").value!=""){
+                window.location.assign("/bughound5/open2.php?bug_id="+<?php echo "1028"; ?>+"&filename="+document.getElementById("open-file").value);
+            }
+        }
+    </script>                            
 
 
 
