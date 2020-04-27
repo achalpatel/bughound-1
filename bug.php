@@ -97,6 +97,7 @@
                         <div class="form-group">
                             <label for="report-type">Report type</label>
                             <select class="form-control" id="report-type" name="report-type">
+                                <!-- <option value="">None</option> -->
                                 <option value="Coding Error">Coding Error</option>
                                 <option value="Design Issue">Design Issue</option>
                                 <option value="Suggestion">Suggestion</option>
@@ -110,6 +111,7 @@
                         <div class="form-group">
                             <label for="severity">Severity</label>
                             <select class="form-control" id="severity" name="severity">
+                            <!-- <option value="">None</option> -->
                             <option value="Minor">Minor</option>
                             <option value="Serious">Serious</option>
                             <option value="Fatal">Fatal</option>                              
@@ -157,7 +159,7 @@
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="reported-date" class="d-block">Date</label>
-                            <input type="date" class="datepicker" placeholder="Date" name="reported-date" id="reported-date">
+                            <input type="date" class="datepicker" placeholder="Date" name="reported-date" id="reported-date" required>
                         </div>
                     </div>
                 </div>
@@ -177,6 +179,7 @@
                             <div class="form-group">
                                 <label for="assigned-to">Assigned to</label>
                                 <select class="form-control" id="assigned-to" name="assigned-to">
+                                <!-- <option value="NULL">None</option> -->
                                 <?php while($row_emp=mysqli_fetch_assoc($result_emp)) { ?>                        
                                 <?php echo "<option value=".$row_emp['emp_id'].">". $row_emp['name']." </option>"; ?>
                                 <?php } mysqli_data_seek( $result_emp, 0 );?> 
@@ -254,6 +257,7 @@
                             <div class="form-group">
                                 <label for="resolved-by">Resolved by</label>
                                 <select class="form-control" id="resolved-by" name="resolved-by">
+                                <!-- <option value="NULL">None</option> -->
                                 <?php while($row_emp=mysqli_fetch_assoc($result_emp)) { ?>                        
                                 <?php echo "<option value=".$row_emp['emp_id'].">". $row_emp['name']." </option>"; ?>
                                 <?php } mysqli_data_seek( $result_emp, 0 );?> 
@@ -270,6 +274,7 @@
                             <div class="form-group">
                                 <label for="tested-by">Tested by</label>
                                 <select class="form-control" id="tested-by" name="tested-by">
+                                <!-- <option value="NULL">None</option> -->
                                 <?php while($row_emp=mysqli_fetch_assoc($result_emp)) { ?>                        
                                 <?php echo "<option value=".$row_emp['emp_id'].">". $row_emp['name']." </option>"; ?>
                                 <?php } mysqli_data_seek( $result_emp, 0 );?> 

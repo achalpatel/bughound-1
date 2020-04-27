@@ -21,6 +21,24 @@
     else{
         header("Location: index.php");
     }
+    ?>
+    <?php if(isset($_SESSION['username'])): ?>
+        <ul class="nav justify-content-end">
+        <li class="nav-item">
+            <a class="nav-link" href="home.php">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="logout.php">Logout</a>
+        </li>
+        </ul>
+    <?php else: ?>
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" href="index.php">Login</a>
+            </li>
+        </ul>
+  <?php endif; ?>
+<?php 
     $con = mysqli_connect("localhost","root");
     mysqli_select_db($con, "bughound_test1");
     if(! $con ) {
@@ -70,7 +88,7 @@
     // echo "sum = ".$summary;
     // echo "prob = ".$problem;
     // echo "by = ".$r_by;
-
+    echo "assignedto - ".$assigned_to;
         
     
     $result=mysqli_query($con,$query);
@@ -78,7 +96,8 @@
         echo "Bug submitted";
     }
     else{
-        echo "Submission failed";
+    
+        echo "Submission failed - Error - ".mysqli_error($con);
     }
     if($_SESSION['userlevel']!=1){
         $bug_id=mysqli_insert_id($con);
