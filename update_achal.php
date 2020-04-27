@@ -322,9 +322,9 @@
                 <div class="form-group">
                     <label>Attachments</label>
                     <select name="open-file" id="open-file">
-                        <?php while($row_file=mysqli_fetch_array($result_file)) { ?>                        
+                        <?php while($row_file=mysqli_fetch_array($result_file)) {  if($row_file[2]!=NULL){?>                        
                         <?php echo "<option value=".$row_file[2].">". $row_file[2]." </option>"; ?>
-                        <?php } mysqli_data_seek( $result_file, 0 );?>                                 
+                        <?php }} mysqli_data_seek( $result_file, 0 );?>                                 
                     </select>
                 </div>
                 </div>

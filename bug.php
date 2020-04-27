@@ -72,8 +72,8 @@
             $query_emp="SELECT emp_id, name  FROM employees ";
             $query_area="SELECT area_id, area FROM areas ";
             $result_prog=mysqli_query($con, $query_prog);
-            $result_emp=mysqli_query($con, $query_emp);
-            // $result_area=mysqli_query($con, $query_area);
+            $result_emp=mysqli_query($con, $query_emp);            
+            $result_area=mysqli_query($con, $query_area);
         ?>
 
     
@@ -167,11 +167,9 @@
                             <div class="form-group">
                                 <label for="functional-area">Functional Area</label>
                                 <select class="form-control" id="function-area" name="function-area">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                <?php while($row_area=mysqli_fetch_assoc($result_area)) { ?>                        
+                                <?php echo "<option value=".$row_area['area_id'].">". $row_area['area']." </option>"; ?>
+                                <?php } mysqli_data_seek( $result_area, 0 );?>
                                 </select>
                             </div>
                         </div>

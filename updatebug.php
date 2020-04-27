@@ -22,7 +22,7 @@
             if(! $con ) {
                 die('Could not connect: ' . mysqli_error());
             }
-            mysqli_select_db($con, "bughound");
+            mysqli_select_db($con, "bughound_test1");
             $query_prog="SELECT * FROM programs";
             $query_emp="SELECT emp_id, name  FROM employees ";
             $query_area="SELECT area_id, area FROM areas ";
@@ -32,7 +32,7 @@
             $resolution=['Pending','Fixed','Irreproducable','Deferred','As designed','Withdrawn by reporter','Need more info','Disagree with suggestion','Duplicate'];
 
 
-            // $result_area=mysqli_query($con, $query_area);
+            $result_area=mysqli_query($con, $query_area);
         ?>
   <?php
   
@@ -43,15 +43,15 @@
                     }
                     
                     
-                    mysqli_select_db($con, "bughound");
+                    mysqli_select_db($con, "bughound_test1");
                     $bug_id=1003;
                     echo $bug_id;
                     //$query = "SELECT * FROM bug where bug_id = '".$bug_id."';";                                        
-                                        $query = "SELECT * FROM bug where bug_id = '1003';";                                        
+                    $query = "SELECT * FROM bug where bug_id = '1003';";                                        
                     $result_bug = mysqli_query($con, $query);
 
                     $row = mysqli_fetch_assoc($result_bug);
-                    echo $row['Program'];
+                    // echo $row['Program'];
 
 
             ?>
@@ -63,8 +63,7 @@
             <form action="Updatebug1.php" method="POST">                
                 <div class="row">
                     <div class="col-12 col-md-4">
-                        <div class="form-group">
-                           <?php echo"<input type='text' class='form-control' id='problem-summary' name='bug_id' value=".$bug_id.">"?> 
+                        <div class="form-group">                           
                             <label for="program">Program</label>   
                             <select class='form-control' id='program' name='program'>
                             <!-- <?php echo"<option selected=".$row['Program'].">".$row['Program']."</option>"?>  -->
@@ -191,11 +190,16 @@
                             <div class="form-group">
                                 <label for="functional-area">Functional Area</label>
                                 <select class="form-control" id="function-area" name="function-area">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                <?php while($row_area=mysqli_fetch_assoc($result_area)){?>
+                                <?php
+                                    if($row_area['area_id']==$row['Functional_Area']){
+                                        echo "<option value=".$row_area['area_id']." selected='".$row_area['area']."'>".$row_area['area']."</option>";
+                                    }
+                                    else{
+                                        echo "<option value=".$row_area['area_id'].">".$row_area['area']."</option>";
+                                    }
+                                }    
+                                ?>                                
                                 </select>
                             </div>
                         </div>
