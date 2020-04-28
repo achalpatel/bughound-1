@@ -120,7 +120,7 @@
               window.location.assign("maintaindb.php");
             }
             function go_update(){
-              window.location.assign("updatebug.php");
+              window.location.assign("searchbug.php");
             }
             function go_bug(){
               window.location.assign("bug.php");

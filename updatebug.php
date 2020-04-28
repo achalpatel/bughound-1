@@ -88,10 +88,10 @@
                     
                     
                     mysqli_select_db($con, "bughound_test1");
-                    $bug_id=1003;
+                    
                     echo $bug_id;
-                    //$query = "SELECT * FROM bug where bug_id = '".$bug_id."';";                                        
-                    $query = "SELECT * FROM bug where bug_id = '1003';";                                        
+                    $query = "SELECT * FROM bug where bug_id = '".$bug_id."';";                                        
+                    // $query = "SELECT * FROM bug where bug_id = '".$bug_id."';";                                        
                     $result_bug = mysqli_query($con, $query);
 
                     $row = mysqli_fetch_assoc($result_bug);
@@ -104,7 +104,7 @@
 <div class="container">
         <h2 class="text-center my-4">Update Bug Page</h2>
         <div id="newBugForm" class="container">
-            <form action="Updatebug1.php" method="POST" enctype="multipart/form-data">                
+            <form action="../Updatebug1.php" method="POST" enctype="multipart/form-data">                
                 <div class="row">
                     <div class="col-12 col-md-4">
                         <div class="form-group">                           
