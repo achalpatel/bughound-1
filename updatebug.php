@@ -56,7 +56,7 @@
         <style type="text/css">
             #lvl{
                 display:None;
-            }
+            }            
         </style>
 
     <?php } ?>
@@ -107,7 +107,9 @@
             <form action="../Updatebug1.php" method="POST" enctype="multipart/form-data">                
                 <div class="row">
                     <div class="col-12 col-md-4">
-                        <div class="form-group">                           
+                        <div class="form-group">
+                        <?php echo"<input type='hidden' class='form-control' id='bug_id' name='bug_id' value=".$bug_id.">"?> 
+                            <label for="program">Program</label>                              
                             <label for="program">Program</label>   
                             <select class='form-control' id='program' name='program'>
                             <!-- <?php echo"<option selected=".$row['Program'].">".$row['Program']."</option>"?>  -->

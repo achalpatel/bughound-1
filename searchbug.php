@@ -156,7 +156,7 @@
                             <select class="form-control"  name="report-type">
                             <option value="">Please select</option>                    
                               <option value="Coding Error">Coding Error</option>
-                              <option value="Design issue">Design issue</option>
+                              <option value="Design Issue">Design Issue</option>
                               <option value="Suggestion">Suggestion</option>
                               <option value="Documentation">Documentation</option>
                               <option value="Hardware">Hardware</option>
@@ -229,9 +229,9 @@
                               <option value="Pending">Pending</option>                    
                               <option value="Fixed">Fixed</option>                    
                               <option value="Irreproducible">Irreproducible</option>                    
-                              <option value="Deffered">Deffered</option>                    
+                              <option value="Deferred">Deferred</option>                    
                               <option value="As designed">As designed</option>                    
-                              <option value="Withdrawen by repoerter">Withdrawen by repoerter</option>                    
+                              <option value="Withdrawn by reporter">Withdrawn by reporter</option>                    
                               <option value="Need more info">Need more info</option>                    
                               <option value="Disagree with suggestion">Disagree with suggestion</option>              
                               <option value="Duplicate">Duplicate</option>                    
@@ -259,7 +259,7 @@
                             <label for="priority">Priority</label>
                             <select class="form-control" name="priority">
                             <option value="">Please select</option>                    
-                               <option value="Fix immediately">Fix immediately</option>
+                              <option value="Fix immediately">Fix immediately</option>
                               <option value="Fix as soon as possible">Fix as soon as possible</option>
                               <option value="Fix before next milestone">Fix before next milestone</option>
                               <option value="Fix before release">Fix before release</option>

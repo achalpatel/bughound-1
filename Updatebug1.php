@@ -30,8 +30,8 @@
     if(! $con ) {
         die('Could not connect: ' . mysqli_error());
     }
-    $bug_id=1003;
-    // $bug_id=  $_POST['bug_id'];
+    
+    $bug_id=$_POST['bug_id'];
     $program=$_POST['program'];
     $r_type=$_POST['report-type'];
     $severity=$_POST['severity'];

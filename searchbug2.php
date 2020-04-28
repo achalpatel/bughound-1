@@ -128,7 +128,7 @@
                       $sql .= " AND Reported_By='".$reported_by."'";
                   }
                    if ($resolution!="") {
-                      $sql .= " AND authName='".$resolution."'";
+                      $sql .= " AND Resolution='".$resolution."'";
                   }
                    if ($status!="") {
                       $sql .= " AND Status_bug='".$status."'";
