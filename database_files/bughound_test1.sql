@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2020 at 07:15 AM
+-- Generation Time: Apr 28, 2020 at 01:25 AM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -85,7 +85,7 @@ INSERT INTO `areas` (`area_id`, `prog_id`, `area`) VALUES
 CREATE TABLE `attachment` (
   `attach_id` int(11) NOT NULL,
   `bug` int(11) NOT NULL,
-  `file_name` varchar(11) NOT NULL
+  `file_name` varchar(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -96,7 +96,14 @@ INSERT INTO `attachment` (`attach_id`, `bug`, `file_name`) VALUES
 (1018, 1031, 'abc.docx'),
 (1019, 1032, 'abc.docx'),
 (1020, 1033, 'abc.pdf'),
-(1021, 1034, 'fileb.txt');
+(1021, 1034, 'fileb.txt'),
+(1028, 1038, ''),
+(1029, 1003, ''),
+(1030, 1003, 'fileb.txt'),
+(1031, 1003, 'LAB.xlsx'),
+(1037, 1045, ''),
+(1038, 1003, ''),
+(1039, 1003, '');
 
 -- --------------------------------------------------------
 
@@ -107,7 +114,7 @@ INSERT INTO `attachment` (`attach_id`, `bug`, `file_name`) VALUES
 CREATE TABLE `bug` (
   `bug_id` int(10) NOT NULL,
   `Program` int(20) NOT NULL,
-  `Report_type` int(20) NOT NULL,
+  `Report_type` varchar(20) NOT NULL,
   `Severity` varchar(10) NOT NULL,
   `Problem_Summary` text,
   `Reproducable` varchar(4) DEFAULT NULL,
@@ -134,17 +141,22 @@ CREATE TABLE `bug` (
 --
 
 INSERT INTO `bug` (`bug_id`, `Program`, `Report_type`, `Severity`, `Problem_Summary`, `Reproducable`, `Problem`, `Suggested_Fix`, `Reported_By`, `Report_Date`, `Functional_Area`, `Assigned_To`, `Comments`, `Status_bug`, `Priority`, `Resolution`, `Resolution_Version`, `Resolved_By`, `Resolve_Date`, `Tested_By`, `Test_Date`, `Deferred`) VALUES
-(1000, 1, 0, 'Minor', 'abc', 'Yes', 'd', NULL, 1000, '2020-04-18', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(1001, 1, 0, 'Minor', 'Test', 'Yes', 'Testing', NULL, 1001, '2020-04-18', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(1002, 1, 0, 'Minor', 'dd', 'Yes', 'ss', NULL, 1001, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(1003, 6, 0, 'Minor', 'Test2', 'Yes', 'Just testing bro', NULL, 1001, '2020-04-18', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(1028, 1, 0, 'Minor', '', 'Yes', '', NULL, 1000, '0000-00-00', 1, 1000, '', 'Open', 'Fix immediately', 'Pending', 1, 1000, '0000-00-00', 1000, '0000-00-00', 'YES'),
-(1029, 1, 0, 'Minor', '', 'Yes', '', NULL, 1000, '0000-00-00', 1, 1000, '', 'Open', 'Fix immediately', 'Pending', 1, 1000, '0000-00-00', 1000, '0000-00-00', 'YES'),
-(1030, 1, 0, 'Minor', '', 'Yes', '', NULL, 1000, '0000-00-00', 1, 1000, '', 'Open', 'Fix immediately', 'Pending', 1, 1000, '0000-00-00', 1000, '0000-00-00', 'YES'),
-(1031, 1, 0, 'Minor', '', 'Yes', '', NULL, 1000, '0000-00-00', 1, 1000, '', 'Open', 'Fix immediately', 'Pending', 1, 1000, '0000-00-00', 1000, '0000-00-00', 'YES'),
-(1032, 4, 0, 'Minor', '', 'Yes', '', NULL, 1000, '0000-00-00', 1, 1000, '', 'Open', 'Fix immediately', 'Pending', 1, 1000, '0000-00-00', 1000, '0000-00-00', 'YES'),
-(1033, 1, 0, 'Minor', '', 'Yes', '', NULL, 1000, '0000-00-00', 1, 1000, '', 'Open', 'Fix immediately', 'Pending', 1, 1000, '0000-00-00', 1000, '0000-00-00', 'YES'),
-(1034, 1, 0, 'Minor', '', 'Yes', '', NULL, 1000, '0000-00-00', 1, 1000, '', 'Open', 'Fix immediately', 'Pending', 1, 1000, '0000-00-00', 1000, '0000-00-00', 'YES');
+(1000, 1, '0', 'Minor', 'abc', 'Yes', 'd', NULL, 1000, '2020-04-18', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1001, 1, '0', 'Minor', 'Test', 'Yes', 'Testing', NULL, 1001, '2020-04-18', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1002, 1, '0', 'Minor', 'dd', 'Yes', 'ss', NULL, 1001, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1003, 6, 'Coding', 'Minor', 'Test2-updated', 'Yes', 'Just testing bro-WOHO', NULL, 1002, '2020-04-19', 17, 1000, 'I dont have any!', 'Closed', 'Fix as soon as possible', 'Pending', 4, 1000, '0000-00-00', 1000, '0000-00-00', 'No'),
+(1028, 1, '0', 'Minor', '', 'Yes', '', NULL, 1000, '0000-00-00', 1, 1000, '', 'Open', 'Fix immediately', 'Pending', 1, 1000, '0000-00-00', 1000, '0000-00-00', 'YES'),
+(1029, 1, '0', 'Minor', '', 'Yes', '', NULL, 1000, '0000-00-00', 1, 1000, '', 'Open', 'Fix immediately', 'Pending', 1, 1000, '0000-00-00', 1000, '0000-00-00', 'YES'),
+(1030, 1, '0', 'Minor', '', 'Yes', '', NULL, 1000, '0000-00-00', 1, 1000, '', 'Open', 'Fix immediately', 'Pending', 1, 1000, '0000-00-00', 1000, '0000-00-00', 'YES'),
+(1031, 1, '0', 'Minor', '', 'Yes', '', NULL, 1000, '0000-00-00', 1, 1000, '', 'Open', 'Fix immediately', 'Pending', 1, 1000, '0000-00-00', 1000, '0000-00-00', 'YES'),
+(1032, 4, '0', 'Minor', '', 'Yes', '', NULL, 1000, '0000-00-00', 1, 1000, '', 'Open', 'Fix immediately', 'Pending', 1, 1000, '0000-00-00', 1000, '0000-00-00', 'YES'),
+(1033, 1, '0', 'Minor', '', 'Yes', '', NULL, 1000, '0000-00-00', 1, 1000, '', 'Open', 'Fix immediately', 'Pending', 1, 1000, '0000-00-00', 1000, '0000-00-00', 'YES'),
+(1034, 1, '0', 'Minor', '', 'Yes', '', NULL, 1000, '0000-00-00', 1, 1000, '', 'Open', 'Fix immediately', 'Pending', 1, 1000, '0000-00-00', 1000, '0000-00-00', 'YES'),
+(1035, 1, 'Coding Error', 'Minor', '', 'Yes', '', NULL, 1000, '0000-00-00', 1, 1000, '', 'Open', 'Fix immediately', 'Pending', 1, 1000, '0000-00-00', 1000, '0000-00-00', 'YES'),
+(1036, 1, 'Coding Error', 'Minor', '', 'Yes', '', NULL, 1000, '0000-00-00', 1, 1000, '', 'Open', 'Fix immediately', 'Pending', 1, 1000, '0000-00-00', 1000, '0000-00-00', 'YES'),
+(1037, 1, 'Coding Error', 'Minor', '', 'Yes', '', NULL, 1000, '0000-00-00', 13, 1000, '', 'Open', 'Fix immediately', 'Pending', 1, 1000, '0000-00-00', 1000, '0000-00-00', 'YES'),
+(1038, 1, 'Coding Error', 'Minor', '', 'Yes', '', NULL, 1000, '0000-00-00', 1, 1000, '', 'Open', 'Fix immediately', 'Pending', 1, 1000, '0000-00-00', 1000, '0000-00-00', 'YES'),
+(1045, 1, 'Coding Error', 'Minor', '', 'Yes', '', NULL, 1000, '2020-04-16', 1, 1000, '', 'Open', 'Fix immediately', 'Pending', 1, 1000, '0000-00-00', 1000, '0000-00-00', 'YES');
 
 -- --------------------------------------------------------
 
@@ -257,13 +269,13 @@ ALTER TABLE `areas`
 -- AUTO_INCREMENT for table `attachment`
 --
 ALTER TABLE `attachment`
-  MODIFY `attach_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1022;
+  MODIFY `attach_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1040;
 
 --
 -- AUTO_INCREMENT for table `bug`
 --
 ALTER TABLE `bug`
-  MODIFY `bug_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1035;
+  MODIFY `bug_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1048;
 
 --
 -- AUTO_INCREMENT for table `employees`
@@ -302,7 +314,8 @@ ALTER TABLE `bug`
   ADD CONSTRAINT `bug_ibfk_3` FOREIGN KEY (`Reported_By`) REFERENCES `employees` (`emp_id`),
   ADD CONSTRAINT `bug_ibfk_4` FOREIGN KEY (`Resolved_By`) REFERENCES `employees` (`emp_id`),
   ADD CONSTRAINT `bug_ibfk_5` FOREIGN KEY (`Tested_By`) REFERENCES `employees` (`emp_id`),
-  ADD CONSTRAINT `bug_ibfk_6` FOREIGN KEY (`Functional_Area`) REFERENCES `areas` (`area_id`);
+  ADD CONSTRAINT `bug_ibfk_6` FOREIGN KEY (`Functional_Area`) REFERENCES `areas` (`area_id`),
+  ADD CONSTRAINT `bug_ibfk_7` FOREIGN KEY (`Functional_Area`) REFERENCES `areas` (`area_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
