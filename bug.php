@@ -81,12 +81,12 @@
     <div class="container">
         <h2 class="text-center my-4">New Bug Report Entry Page</h2>
         <div id="newBugForm" class="container">
-            <form action="bug_new.php" method="POST" onsubmit="return validate()" enctype="multipart/form-data">                
+            <form action="bug_new.php" method="POST" enctype="multipart/form-data">                
                 <div class="row">
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label for="program">Program</label>                            
-                            <select class="form-control" id="program" name="program">
+                            <select class="form-control" id="program" name="program" required>
                             <option value="">Please select</option> <!-- Compulsory -->
                             <?php while($row_prog=mysqli_fetch_assoc($result_prog)) { ?>                        
                             <?php echo "<option value=".$row_prog['prog_id'].">". $row_prog['program']."-".$row_prog['program_release']."-".$row_prog['program_version']." </option>"; ?>
@@ -97,8 +97,9 @@
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label for="report-type">Report type</label>
-                            <select class="form-control" id="report-type" name="report-type">
+                            <select class="form-control" id="report-type" name="report-type" required>
                                 <!-- <option value="">None</option> -->
+                                <option value="">Please Select</option>
                                 <option value="Coding Error">Coding Error</option>
                                 <option value="Design Issue">Design Issue</option>
                                 <option value="Suggestion">Suggestion</option>
@@ -111,7 +112,8 @@
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label for="severity">Severity</label>
-                            <select class="form-control" id="severity" name="severity">
+                            <select class="form-control" id="severity" name="severity" required>
+                            <option value="">Please Select</option>
                             <!-- <option value="">None</option> -->
                             <option value="Minor">Minor</option>
                             <option value="Serious">Serious</option>
@@ -132,6 +134,7 @@
                         <div class="form-group">
                             <label for="reporductible">Reproductible?</label>
                             <select class="form-control" id="reporductible" name="reproduce">
+                            <option value="">Please Select</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                             </select>
@@ -150,7 +153,8 @@
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="reported-by">Reported by</label>
-                            <select class="form-control" id="reported-by" name="reported-by">                              
+                            <select class="form-control" id="reported-by" name="reported-by" required> 
+                            <option value="">Please Select</option>                             
                             <?php while($row_emp=mysqli_fetch_assoc($result_emp)) { ?>                        
                             <?php echo "<option value=".$row_emp['emp_id'].">". $row_emp['name']." </option>"; ?>
                             <?php } mysqli_data_seek( $result_emp, 0 );?> 
@@ -170,6 +174,7 @@
                             <div class="form-group">
                                 <label for="functional-area">Functional Area</label>
                                 <select class="form-control" id="function-area" name="function-area">
+                                <option value="">Please Select</option>
                                 <?php while($row_area=mysqli_fetch_assoc($result_area)) { ?>                        
                                 <?php echo "<option value=".$row_area['area_id'].">". $row_area['area']." </option>"; ?>
                                 <?php } mysqli_data_seek( $result_area, 0 );?>
@@ -181,6 +186,7 @@
                                 <label for="assigned-to">Assigned to</label>
                                 <select class="form-control" id="assigned-to" name="assigned-to">
                                 <!-- <option value="NULL">None</option> -->
+                                <option value="">Please Select</option>
                                 <?php while($row_emp=mysqli_fetch_assoc($result_emp)) { ?>                        
                                 <?php echo "<option value=".$row_emp['emp_id'].">". $row_emp['name']." </option>"; ?>
                                 <?php } mysqli_data_seek( $result_emp, 0 );?> 
@@ -203,6 +209,7 @@
                             <div class="form-group">
                                 <label for="status">Status</label>
                                 <select class="form-control" id="status" name="status">
+                                <option value="">Please Select</option>
                                 <option>Open</option>
                                 <option>Closed</option>
                                 <option>Resolved</option>                            
@@ -213,6 +220,7 @@
                             <div class="form-group">
                                 <label for="priority">Priority</label>
                                 <select class="form-control" id="priority" name="priority">
+                                <option value="">Please Select</option>
                                 <option>Fix immediately</option>
                                 <option>Fix as soon as possible</option>
                                 <option>Fix before next milestone</option>
@@ -226,6 +234,7 @@
                             <div class="form-group">
                                 <label for="resolution">Resolution</label>
                                 <select class="form-control" id="resolution" name="resolution">
+                                <option value="">Please Select</option>
                                 <option>Pending</option>
                                 <option>Fixed</option>
                                 <option>Irreproducable</option>
@@ -242,6 +251,7 @@
                             <div class="form-group">
                                 <label for="resolution-v">Resolution version</label>
                                 <select class="form-control" id="resolution-v" name="resolution-v">
+                                <option value="">Please Select</option>
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -277,6 +287,7 @@
                                 <label for="tested-by">Tested by</label>
                                 <select class="form-control" id="tested-by" name="tested-by">
                                 <!-- <option value="NULL">None</option> -->
+                                <option value="">Please Select</option>
                                 <?php while($row_emp=mysqli_fetch_assoc($result_emp)) { ?>                        
                                 <?php echo "<option value=".$row_emp['emp_id'].">". $row_emp['name']." </option>"; ?>
                                 <?php } mysqli_data_seek( $result_emp, 0 );?> 
@@ -293,6 +304,7 @@
                             <div class="form-group">
                                 <label for="treat-as">Treat as deferred?</label>
                                 <select class="form-control" id="treat-as" name="treat-as">
+                                <option value="">Please Select</option>
                                 <option>YES</option>
                                 <option>NO</option>                                
                                 </select>
