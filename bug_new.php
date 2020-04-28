@@ -87,8 +87,8 @@
     $data_val = array_values($data);
     // echo implode(', ', $key_val);
     // echo implode(', ', $data_val);
-    $query= "INSERT INTO bug (" . implode(', ', $key_val) . ") VALUES ('".implode(', ', $data_val). "');"; 
-    echo "<br>".$query= "INSERT INTO bug (" . implode(', ', $key_val) . ") VALUES ('".implode("', '", $data_val). "');"; 
+    $query= "INSERT INTO bug (" . implode(', ', $key_val) . ") VALUES ('".implode("', '", $data_val). "');";
+    // echo "<br>".$query= "INSERT INTO bug (" . implode(', ', $key_val) . ") VALUES ('".implode("', '", $data_val). "');"; 
     // if($_SESSION['userlevel']!=1){
     //     $area=$_POST['function-area'];
     //     $assigned_to=$_POST['assigned-to'];
@@ -139,7 +139,7 @@
     if($_SESSION['userlevel']!=1){
         $bug_id=mysqli_insert_id($con);
         $num_files=count($_FILES['file1']['tmp_name']);
-        echo "count= ".$num_files;
+        // echo "count= ".$num_files;
         $query_file="";
         for($i=0;$i<$num_files;$i++){
             $filename=$_FILES['file1']['name'][$i];
