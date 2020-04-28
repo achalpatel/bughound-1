@@ -65,6 +65,7 @@
         $priority=$_POST['priority'];
         $resolution=$_POST['resolution'];
         $resolution_v=$_POST['resolution-v'];
+        // $resolved_by = ($_POST['resolved-by']=="" ? NULL : $_POST['resolved-by']);
         $resolved_by=$_POST['resolved-by'];
         $resolved_date=$_POST['resolved-date'];
         $tested_by=$_POST['tested-by'];

@@ -81,12 +81,13 @@
     <div class="container">
         <h2 class="text-center my-4">New Bug Report Entry Page</h2>
         <div id="newBugForm" class="container">
-            <form action="bug_new.php" method="POST" enctype="multipart/form-data">                
+            <form action="bug_new.php" method="POST" onsubmit="return validate()" enctype="multipart/form-data">                
                 <div class="row">
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label for="program">Program</label>                            
                             <select class="form-control" id="program" name="program">
+                            <option value="">Please select</option> <!-- Compulsory -->
                             <?php while($row_prog=mysqli_fetch_assoc($result_prog)) { ?>                        
                             <?php echo "<option value=".$row_prog['prog_id'].">". $row_prog['program']."-".$row_prog['program_release']."-".$row_prog['program_version']." </option>"; ?>
                             <?php } ?>
@@ -258,6 +259,7 @@
                                 <label for="resolved-by">Resolved by</label>
                                 <select class="form-control" id="resolved-by" name="resolved-by">
                                 <!-- <option value="NULL">None</option> -->
+                                <option value="">Please Select</option>
                                 <?php while($row_emp=mysqli_fetch_assoc($result_emp)) { ?>                        
                                 <?php echo "<option value=".$row_emp['emp_id'].">". $row_emp['name']." </option>"; ?>
                                 <?php } mysqli_data_seek( $result_emp, 0 );?> 
@@ -306,7 +308,7 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-12 mb-3">
-                        <button class="btn btn-primary w-100" type="submit">Submit</button>
+                        <button class="btn btn-primary w-100" type="submit" >Submit</button>
                     </div>
                     <div class="col-6">
                         <input class="btn btn-outline-primary w-100" type="reset" value="Reset">
@@ -323,6 +325,15 @@
 </body>
 
     <script>
+        function validate(){
+            if(document.getElementById('program').value==""){
+                alert("Please select a Program!");
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
         function go_back(){
             window.location.assign("home.php");
         }
