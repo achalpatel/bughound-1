@@ -39,7 +39,7 @@
 <?php if(isset($_SESSION['username'])): ?>
         <ul class="nav justify-content-end">
         <li class="nav-item">
-            <a class="nav-link" href="home.php">Home</a>
+            <a class="nav-link" href="../home.php">Home</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="logout.php">Logout</a>
@@ -430,7 +430,7 @@
                         <input class="btn btn-outline-primary w-100" type="reset" value="Reset">
                     </div>
                     <div class="col-6">
-                        <a class="btn btn-outline-primary w-100 text-primary" role="button">Cancel</a>
+                        <button class="btn btn-outline-primary w-100" type="button" onclick="go_back()">Cancel</button>                        
                     </div>
                 </div>
             </form>
@@ -467,8 +467,11 @@
                 window.location.assign("/bughound5/open2.php?bug_id="+<?php echo $row['bug_id']; ?>+"&filename="+document.getElementById("open-file").value);
             }
         }
+        function go_back(){
+            window.location.assign("../searchbug.php");
+        }
     </script>                            
-
+    
 
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
