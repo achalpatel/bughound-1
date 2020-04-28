@@ -61,7 +61,7 @@
             $query_prog="SELECT * FROM programs";
             $query_area = "SELECT * FROM areas";
             $query_emp="SELECT emp_id, name  FROM employees ";
-            $query_join = "SELECT programs.program_version, programs.program, programs.program_release FROM programs INNER JOIN bug ON programs.prog_id = bug.Program";
+            $query_join = "SELECT programs.program_version, programs.program, programs.program_release FROM programs INNER JOIN bug ON programs.prog_id = bug.program";
 
             $result_prog=mysqli_query($con, $query_prog);
             $result_emp=mysqli_query($con, $query_emp);
@@ -118,9 +118,9 @@
             //   array_push($programList, $row["program"]);
 
             // }
-            while($row=mysqli_fetch_assoc($result_prog))
+            while($row_prog=mysqli_fetch_assoc($result_prog))
             {
-              array_push($prog_info,$row["program"].'-'.$row["program_version"].'-'.$row["program_release"]);
+              array_push($prog_info,$row_prog["program"].'-'.$row_prog["program_version"].'-'.$row_prog["program_release"].'-'.$row_prog['prog_id']);
             //   array_push($programList, $row["program"]);
 
             }
@@ -140,12 +140,12 @@
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label for="program">Program</label>
-                            <select  class="form-control" name="program">  
-                            <option value="">Please select</option>                    
-                                
+                            <select  class="form-control" name="program_name">  
+                            <option value="">Please select</option>                                                
                                     <?php foreach ($prog_info as $temp ) { 
                                   if($temp != '' || $temp != null)
-                                  { ?> <option value=<?php echo $row['prog_id'];?> ><?php echo $temp; ?></option> <?php } }?> 
+                                  { $temp_ar=explode("-",$temp); 
+                                    ?> <option value=<?php echo $temp_ar[3];?> ><?php echo $temp_ar[0]."-".$temp_ar[1]."-".$temp_ar[2]; ?></option> <?php } }?> 
                                 
                            </select>
                           </div>

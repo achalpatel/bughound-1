@@ -41,7 +41,7 @@
         die('Could not connect: ' . mysqli_error());
     }  
 
-    $program= $_POST['program'];
+    $program= $_POST['program_name'];
     $r_type=$_POST['report-type'];
     $severity=$_POST['severity'];
     $functional_area=$_POST['functional-area'];
