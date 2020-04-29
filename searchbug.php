@@ -283,7 +283,7 @@
                         <input class="btn btn-outline-primary w-100" type="reset"  onclick="reset()" value="Reset">
                     </div>
                     <div class="col-6">
-                        <a class="btn btn-outline-primary w-100 text-primary" onclick="go_home()" role="button">Back</a>
+                        <button class="btn btn-outline-primary w-100" type="button" onclick="go_home()">Back</a>
                     </div>
                 </div>
             </form>
@@ -304,7 +304,7 @@
         // body...
         window.location.assign("searchbug.php");
       }
-  function go_home(){window.location.replace("home.php");}
+  function go_home(){window.location.assign("home.php");}
 
     </script>
 

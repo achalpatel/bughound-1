@@ -97,9 +97,8 @@
                     $row = mysqli_fetch_assoc($result_bug);
                     // echo $row['Program'];
 
-
+                    
             ?>
-
     
 <div class="container">
         <h2 class="text-center my-4">Update Bug Page</h2>
@@ -111,7 +110,7 @@
                         <?php echo"<input type='hidden' class='form-control' id='bug_id' name='bug_id' value=".$bug_id.">"?> 
                             <label for="program">Program</label>                              
                             <label for="program">Program</label>   
-                            <select class='form-control' id='program' name='program'>                            
+                            <select class='form-control' id='program' name='program'>                                                        
                             <!-- <?php echo"<option selected=".$row['Program'].">".$row['Program']."</option>"?>  -->
 
                             <?php while($row_prog=mysqli_fetch_assoc($result_prog)) { 
@@ -236,6 +235,7 @@
                             <div class="form-group">
                                 <label for="functional-area">Functional Area</label>
                                 <select class="form-control" id="function-area" name="function-area">
+                                <option value="">Please select</option>
                                 <?php while($row_area=mysqli_fetch_assoc($result_area)){?>
                                 <?php
                                     if($row_area['area_id']==$row['Functional_Area']){
@@ -251,19 +251,18 @@
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-group">
-                                <label for="assigned-to">Assigned to</label>
+                                <label for="assigned-to">Assigned to </label>
                                 <select class="form-control" id="assigned-to" name="assigned-to">
                                 <option value="">Please select</option>                             
                                 <?php while($row_emp=mysqli_fetch_assoc($result_emp)) { ?>  
                                  <?php 
-                            if ($row_emp['emp_id']==$row['Assigned_to']) {
-                              # code...
-                              echo "<option value=".$row_emp['emp_id']." selected='".$row_emp['name']."'>".$row_emp['name']."</option>";
-                            }else
-                            {
-                              echo "<option value=".$row_emp['emp_id'].">". $row_emp['name']." </option>"; 
-                            }?>                      
-                                
+                                    if ($row_emp['emp_id']==$row['Assigned_To']) {
+                                    echo "<option value=".$row_emp['emp_id']." selected='".$row_emp['name']."'>".$row_emp['name']."</option>";
+                                    }else
+                                    {
+                                    echo "<option value=".$row_emp['emp_id'].">".$row_emp['name']." </option>"; 
+                                    }
+                                ?>    
                                 <?php } mysqli_data_seek( $result_emp, 0 );?> 
                                 </select>
                             </div>
@@ -284,6 +283,7 @@
                             <div class="form-group">
                                 <label for="status">Status</label>
                                 <select class="form-control" id="status" name="status">
+                                <option value="">Please select</option>
                                 <?php $status=['Closed','Open','Resolved'];
                                 foreach($status as $val)
                                 {
@@ -293,7 +293,6 @@
                                  else
                                   {
                                   echo"<option>".$val."</option>";}
-
                                   }?>
                                 }                     
                                 </select>
@@ -303,6 +302,7 @@
                             <div class="form-group">
                                 <label for="priority">Priority</label>
                                 <select class="form-control" id="priority" name="priority">
+                                <option value="">Please select</option>
                                 <?php $prio=['Fix immediately','Fix as soon as possible','Fix before next milestone','Fix before release','Fix if possible','Optional'];
                                  foreach($prio as $val)
                                  {
@@ -319,8 +319,9 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="resolution">Resolution</label>
+                                <label for="resolution">Resolution</label>                                
                                 <select class="form-control" id="resolution" name="resolution">
+                                <option value="">Please select</option>
                                   <?php foreach($resolution as $value){
                                 if ($value==$row['Resolution']) {
                               
@@ -337,8 +338,8 @@
                             <div class="form-group">
                                 <label for="resolution-v">Resolution version</label>
                                 <select class="form-control" id="resolution-v" name="resolution-v">
-                                <?php echo"<option selected='".$row['Resolution_Version']."'>".$row['Resolution_Version']."</option>"?>
-
+                                <option value="">Please select</option>
+                                <?php echo"<option selected='".$row['Resolution_Version']."'>".$row['Resolution_Version']."</option>"?>                                
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -404,6 +405,7 @@
                             <div class="form-group">
                                 <label for="treat-as">Treat as deferred?</label>
                                 <select class="form-control" id="treat-as" name="treat-as">
+                                <option value="">Please select</option>
                                   <?php foreach($bool as $value){
                                 if ($value==$row['Deferred']) {
                               

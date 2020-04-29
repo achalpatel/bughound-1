@@ -96,7 +96,7 @@
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="form-group">
-                            <label for="report-type">Report type </label>
+                            <label for="report-type">Report type (Required)</label>
                             <select class="form-control" id="report-type" name="report-type" required>
                                 <!-- <option value="">None</option> -->
                                 <option value="">Please Select</option>
@@ -111,7 +111,7 @@
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="form-group">
-                            <label for="severity">Severity</label>
+                            <label for="severity">Severity (Required)</label>
                             <select class="form-control" id="severity" name="severity" required>
                             <option value="">Please Select</option>
                             <!-- <option value="">None</option> -->
@@ -152,7 +152,7 @@
                 <div class="row">
                     <div class="col-12 col-md-6">
                         <div class="form-group">
-                            <label for="reported-by">Reported by</label>
+                            <label for="reported-by">Reported by (Required)</label>
                             <select class="form-control" id="reported-by" name="reported-by" required> 
                             <option value="">Please Select</option>                             
                             <?php while($row_emp=mysqli_fetch_assoc($result_emp)) { ?>                        
@@ -163,11 +163,12 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
-                            <label for="reported-date" class="d-block">Date</label>
+                            <label for="reported-date" class="d-block">Date (Required)</label>
                             <input type="date" class="datepicker" placeholder="Date" name="reported-date" id="reported-date" required>
                         </div>
                     </div>
                 </div>
+                <hr>
                 <div id="lvl">
                     <div class="row">
                         <div class="col-12 col-md-6">
