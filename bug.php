@@ -85,7 +85,7 @@
                 <div class="row">
                     <div class="col-12 col-md-4">
                         <div class="form-group">
-                            <label for="program">Program</label>                            
+                            <label for="program">Program (Required)</label>                            
                             <select class="form-control" id="program" name="program" required>
                             <option value="">Please select</option> <!-- Compulsory -->
                             <?php while($row_prog=mysqli_fetch_assoc($result_prog)) { ?>                        
@@ -96,7 +96,7 @@
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="form-group">
-                            <label for="report-type">Report type</label>
+                            <label for="report-type">Report type </label>
                             <select class="form-control" id="report-type" name="report-type" required>
                                 <!-- <option value="">None</option> -->
                                 <option value="">Please Select</option>

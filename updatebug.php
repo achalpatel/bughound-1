@@ -111,7 +111,7 @@
                         <?php echo"<input type='hidden' class='form-control' id='bug_id' name='bug_id' value=".$bug_id.">"?> 
                             <label for="program">Program</label>                              
                             <label for="program">Program</label>   
-                            <select class='form-control' id='program' name='program'>
+                            <select class='form-control' id='program' name='program'>                            
                             <!-- <?php echo"<option selected=".$row['Program'].">".$row['Program']."</option>"?>  -->
 
                             <?php while($row_prog=mysqli_fetch_assoc($result_prog)) { 
@@ -253,8 +253,7 @@
                             <div class="form-group">
                                 <label for="assigned-to">Assigned to</label>
                                 <select class="form-control" id="assigned-to" name="assigned-to">
-
-                             
+                                <option value="">Please select</option>                             
                                 <?php while($row_emp=mysqli_fetch_assoc($result_emp)) { ?>  
                                  <?php 
                             if ($row_emp['emp_id']==$row['Assigned_to']) {
@@ -356,6 +355,7 @@
                             <div class="form-group">
                                 <label for="resolved-by">Resolved by</label>
                                 <select class="form-control" id="resolved-by" name="resolved-by">
+                                <option value="">Please select</option>
                                 <?php while($row_emp=mysqli_fetch_assoc($result_emp)) { 
                                 if ($row_emp['emp_id']==$row['Resolved_By']) {
                               
@@ -380,6 +380,7 @@
                             <div class="form-group">
                                 <label for="tested-by">Tested by</label>
                                 <select class="form-control" id="tested-by" name="tested-by">
+                                <option value="">Please select</option>
                                 <?php while($row_emp=mysqli_fetch_assoc($result_emp)) {
                                 if ($row_emp['emp_id']==$row['Tested_By']) {
                               
