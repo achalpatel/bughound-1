@@ -50,6 +50,8 @@
     $resolution=$_POST['resolution'];
     $status=$_POST['status'];
     $priority=$_POST['priority'];
+    $report_date=$_POST['reported-date'];
+    $resolved_by=$_POST['resolved-by'];
 
     echo $program;
     echo "Severity = ".$severity; //edit
@@ -135,6 +137,12 @@
                   }
                    if ($priority!="") {
                       $sql .= " AND Priority='".$priority."'";
+                  }
+                  if ($resolved_by!="") {
+                    $sql .= " AND Resolved_By='".$resolved_by."'";
+                  }
+                  if ($report_date!="") {
+                    $sql .= " AND Report_Date='".$report_date."'";
                   }
                   
               }

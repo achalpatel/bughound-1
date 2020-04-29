@@ -95,6 +95,8 @@
             $programList=[];
             $bugList=[];
             $emp_info=[];
+            $resolved_by=[];
+            $report_date=[];
             while($row = mysqli_fetch_assoc($result_bug))
             {
               array_push($program, $row['Program']);
@@ -107,6 +109,8 @@
               array_push($status, $row['Status_bug']);
               array_push($priority, $row['Priority']);
               array_push($bugList, $row['bug_id']);
+              array_push($resolved_by, $row['Resolved_By']);
+              array_push($report_date, $row['Report_Date']);
 
               // array_push($new, $row['rogram']);
 
@@ -187,7 +191,7 @@
                               <?php while($row=mysqli_fetch_assoc($result_area))
                               {  ?>
                                 <option value=<?php echo $row['area_id'];?> >
-                                <?php echo $row['area_id'].'-'.$row['area'];?>
+                                <?php echo $row['area'];?>
                                 </option>
                                 
                                 <?php 
@@ -203,7 +207,7 @@
                             <option value="">Please select</option>                    
                              <?php foreach ($emp_info as $temp ) { 
                                   if($temp != '' || $temp != null)
-                                  { ?> <option><?php echo $temp; ?></option> <?php } }?>
+                                  { $temp_a=explode("-",$temp);?> <option value=<?php echo $temp_a[0];?>><?php echo $temp_a[1]; ?></option> <?php } }?>
                             </select>
                           </div>
                     </div>
@@ -217,7 +221,7 @@
                             <option value="">Please select</option>  
                             <?php foreach ($emp_info as $temp ) { 
                                   if($temp != '' || $temp != null)
-                                  { ?> <option><?php echo $temp; ?></option> <?php } }?>
+                                  { $temp_a=explode("-",$temp);?> <option value=<?php echo $temp_a[0];?> ><?php echo $temp_a[1]; ?></option> <?php } }?>
                             </select>
                           </div>
                     </div>
@@ -267,13 +271,29 @@
                               <option value="Optional">Optional</option>
                             </select>
                         </div>
-                    </div>
-                    <div class="col-6">
-                        
-                    </div>
-                   
+                        </div>
                 </div>
-    
+                  
+            
+                <div class="row">
+                      <div class="col">
+                        <div class="form-group">
+                          <label for="resolved-by">Resolved-By</label>
+                              <select class="form-control" name="resolved-by">
+                              <option value="">Please select</option>                    
+                              <?php foreach ($emp_info as $temp ) { 
+                                  if($temp != '' || $temp != null)
+                                  { $temp_a=explode("-",$temp); ?> <option value=<?php echo $temp_a[0];?>><?php echo $temp_a[1]; ?></option> <?php } }?>
+                              </select>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-group">
+                          <label for="report-date">Report Date</label>
+                          <input type="date" class="datepicker" placeholder="Date" name="reported-date" id="reported-date">
+                        </div>
+                      </div>
+                </div>
     
                 <div class="row mt-3">
                     <div class="col-12 mb-3">
