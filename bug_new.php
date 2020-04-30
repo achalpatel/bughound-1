@@ -168,7 +168,7 @@
         echo "Bug submitted";
     }
     else{    
-        echo "Submission failed - Error - ".mysqli_stmt_error($con);
+        echo "Submission failed - Error - ";
     }
     if($_SESSION['userlevel']!=1){
         $bug_id=mysqli_stmt_insert_id($stm);

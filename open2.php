@@ -53,8 +53,9 @@
             header("Content-Disposition: inline; filename=".$file_name."");
             header('Expires: 0');
             header('Cache-Control: must-revalidate');
-            header('Pragma: public');
-            readfile('uploads/abc.pdf');
+            header('Pragma: public');            
+            readfile("uploads/".$file_name);        
+            
         }
         else{
             echo mysqli_error($con);
