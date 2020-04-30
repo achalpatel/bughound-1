@@ -35,8 +35,8 @@
       if(! $con ) {
         die('Could not connect: ' . mysqli_error());
       }
-      mysqli_select_db($con, "bughound");
-      $query = "SHOW TABLES FROM bughound";
+      mysqli_select_db($con, "bughound_test1");
+      $query = "SHOW TABLES FROM bughound_test1";
       mysqli_query($con, $query);    
       $result = mysqli_query($con, $query);
       if (mysqli_num_rows($result) > 0) {     

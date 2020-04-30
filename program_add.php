@@ -22,7 +22,7 @@ $con = mysqli_connect("localhost","root");
 	$prog_version=mysqli_real_escape_string($con,$_POST['prog_version']);
 	$prog_release=mysqli_real_escape_string($con,$_POST['prog_release']);
 	
-	mysqli_select_db($con, "bughound");
+	mysqli_select_db($con, "bughound_test1");
 	$query1="INSERT INTO programs (program, program_version, program_release) VALUES ('".$prog_name."','".$prog_version."','".$prog_release."')";
 	$query2="SELECT * FROM programs WHERE program='$prog_name' AND program_release='$prog_release' AND program_version='$prog_version';";
 	$result2=mysqli_query($con, $query2);	

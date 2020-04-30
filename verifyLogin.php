@@ -20,7 +20,7 @@
     	$username=mysqli_real_escape_string($con,$_POST['username']);
         $password=mysqli_real_escape_string($con,$_POST['password']);
     	
-    	mysqli_select_db($con,"bughound");
+    	mysqli_select_db($con,"bughound_test1");
     	$query="SELECT * FROM employees WHERE username='$username' AND password='$password';";
     	$result=mysqli_query($con,$query);
         $num_rows=mysqli_num_rows($result);

@@ -17,7 +17,7 @@
 
                 // printf("You entered %s %s %s %s as your name.<p>",$first,$last,$password,$userlevel);
                     $con = mysqli_connect("localhost","root");
-                    mysqli_select_db($con, "bughound");
+                    mysqli_select_db($con, "bughound_test1");
                      $query = "INSERT INTO employees (name, username, password, userlevel) VALUES ('".$name."','".$username."','".$password."','".$userlevel."')";
                     // echo $query;
                     mysqli_query($con, $query);

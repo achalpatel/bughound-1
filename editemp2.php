@@ -50,7 +50,7 @@
       $password=mysqli_real_escape_string($con,$_POST['password']);
       $userlevel=mysqli_real_escape_string($con,$_POST['userlevel']);
       
-      mysqli_select_db($con, "bughound");
+      mysqli_select_db($con, "bughound_test1");
       $query1="UPDATE employees SET name='$name' , username='$username' , password='$password' , userlevel='$userlevel' WHERE emp_id='$emp_id';";
       $query2="SELECT * FROM employees WHERE username='$username' AND emp_id<>$emp_id;";
       $result2=mysqli_query($con, $query2);

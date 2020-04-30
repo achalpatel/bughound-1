@@ -53,7 +53,7 @@
   <?php 
     $val=$_POST['export'];
     $con = mysqli_connect("localhost","root");
-    mysqli_select_db($con, "bughound");
+    mysqli_select_db($con, "bughound_test1");
     if(! $con ) {
       die('Could not connect: ' . mysqli_error());
     }

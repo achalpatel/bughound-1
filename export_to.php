@@ -40,7 +40,7 @@ if(isset($_POST["export"]) && $type_select=="ascii")
         header('Content-Disposition: attachment; filename=areas.csv');  
         $output = fopen("php://output", "w");  
         fputcsv($output, array('area_id', 'program_id', 'area'));
-        mysqli_select_db($con, "bughound");              
+        mysqli_select_db($con, "bughound_test1");              
         $query = "SELECT * FROM areas";    
         $result = mysqli_query($con, $query);
         if(mysqli_num_rows($result) > 0) 
@@ -60,7 +60,7 @@ if(isset($_POST["export"]) && $type_select=="ascii")
         header('Content-Disposition: attachment; filename=programs.csv');  
         $output = fopen("php://output", "w");  
         fputcsv($output, array('program_id', 'program', 'program_release', 'program_version'));
-        mysqli_select_db($con, "bughound");              
+        mysqli_select_db($con, "bughound_test1");              
         $query = "SELECT * FROM programs";    
         $result = mysqli_query($con, $query);
         if(mysqli_num_rows($result) > 0) 

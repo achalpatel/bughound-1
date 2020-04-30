@@ -51,7 +51,7 @@
       <?php endif; ?>
   	<?php
       $con = mysqli_connect("localhost","root");
-      mysqli_select_db($con, "bughound");
+      mysqli_select_db($con, "bughound_test1");
       
       
       if(isset($_GET['id'])){

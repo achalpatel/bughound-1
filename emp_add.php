@@ -60,7 +60,7 @@
                 $userlevel = mysqli_real_escape_string($con,$_POST['userlevel']);
                 
                 
-                mysqli_select_db($con, "bughound");
+                mysqli_select_db($con, "bughound_test1");
                 $query1 = "INSERT INTO employees (name, username, password, userlevel) VALUES ('".$name."','".$username."','".$password."','".$userlevel."')";        
                 $query2="SELECT * FROM employees WHERE username='$username'";
                 $result2=mysqli_query($con, $query2);

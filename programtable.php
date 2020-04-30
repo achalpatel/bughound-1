@@ -70,7 +70,7 @@
              <?php
                     
                     $con = mysqli_connect("localhost","root");
-                    mysqli_select_db($con, "bughound");
+                    mysqli_select_db($con, "bughound_test1");
                      $query = "SELECT * FROM programs";
                      mysqli_query($con, $query);
                     if(! $con ) {

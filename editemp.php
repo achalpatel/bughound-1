@@ -59,7 +59,7 @@
                     if(! $con ) {
                     die('Could not connect: ' . mysqli_error());
                     }
-                    mysqli_select_db($con, "bughound");
+                    mysqli_select_db($con, "bughound_test1");
                     $query = "SELECT * FROM employees where emp_id = '".$emp_id."';";                                        
                     $result = mysqli_query($con, $query);
                     $row = mysqli_fetch_assoc($result);

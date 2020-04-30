@@ -57,7 +57,7 @@
             if(! $con ) {
               die('Could not connect: ' . mysqli_error());
             }
-            mysqli_select_db($con, "bughound");
+            mysqli_select_db($con, "bughound_test1");
             $query1 = "SELECT * FROM areas where area_id ='".$area_id."';";          
             
             $result = mysqli_query($con, $query1);

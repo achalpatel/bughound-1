@@ -73,7 +73,7 @@
               // $area = $_POST['area'];
               $prog_id =mysqli_real_escape_string($con, isset($_GET['prog_id']) ? $_GET['prog_id'] : '0');
               
-              mysqli_select_db($con, "bughound");
+              mysqli_select_db($con, "bughound_test1");
               
               
               if(isset($area) && isset($area_id)){

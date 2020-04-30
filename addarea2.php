@@ -49,7 +49,7 @@
                 $prog_id = mysqli_real_escape_string($con, $_POST['prog_id']);
                 $area = mysqli_real_escape_string($con, $_POST['area']);       
                       
-	            mysqli_select_db($con, "bughound");
+	            mysqli_select_db($con, "bughound_test1");
 	            $query1 = "INSERT INTO areas (prog_id, area) VALUES ('".$prog_id."','".$area."')";
 	            $query2 = "SELECT areas.area_id, areas.prog_id, areas.area, programs.program FROM areas INNER JOIN programs ON areas.prog_id=programs.prog_id WHERE areas.prog_id=$prog_id AND areas.area='$area';";
 	            $result2=mysqli_query($con, $query2);
