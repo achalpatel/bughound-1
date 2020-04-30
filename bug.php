@@ -132,7 +132,7 @@
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="form-group">
-                            <label for="reporductible">Reproductible?</label>
+                            <label for="reporductible">Reproducible?</label>
                             <select class="form-control" id="reporductible" name="reproduce">
                             <option value="">Please Select</option>
                             <option value="Yes">Yes</option>

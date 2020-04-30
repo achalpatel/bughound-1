@@ -105,12 +105,46 @@
               mysqli_select_db($con, "bughound_test1");              
               // $query = "SELECT * FROM bug where Report_type = '".$r_type."' AND Severity = '".$severity."' AND Functional_Area = '".$functional_area."' AND Assigned_To = '".$assigned_to."' AND Reported_By = '".$reported_by."' AND Resolution = '".$resolution."' AND Status = '".$status."' AND Priority = '".$priority."'  " ;  
 
-             if($status==""){               
-              $sql = " SELECT * FROM bug WHERE Status_bug='Open';";
+             if($status==""){     
+              //  echo "in status= ''";          
+                  $sql = " SELECT * FROM bug WHERE Status_bug='Open'";
+                    if ($program!="") {
+                      $sql .= " AND Program=".$program."";
+                  }
+                    if ($r_type!="") {
+                      $sql .= " AND Report_type='".$r_type."'";
+                  }
+                    if ($severity!="") {
+                      $sql .= " AND Severity='".$severity."'";
+                  }
+                    if ($functional_area!="") {
+                      $sql .= " AND Functional_Area='".$functional_area."'";
+                  }
+                    if ($assigned_to!="") {
+                      $sql .= " AND Assigned_To='".$assigned_to."'";
+                  }
+                    if ($reported_by!="") {
+                      $sql .= " AND Reported_By='".$reported_by."'";
+                  }
+                    if ($resolution!="") {
+                      $sql .= " AND Resolution='".$resolution."'";
+                  }                    
+                    if ($priority!="") {
+                      $sql .= " AND Priority='".$priority."'";
+                  }
+                  if ($resolved_by!="") {
+                    $sql .= " AND Resolved_By='".$resolved_by."'";
+                  }
+                  if ($report_date!="") {
+                    $sql .= " AND Report_Date='".$report_date."'";
+                  }
+                  $sql.=";";
+                  // echo "<br> Query = ".$sql;
              }
              else{
               if(isset($_POST['search']))
-              {                  
+              {           
+                // echo "in else= ''";       
                   $sql = " SELECT * FROM bug WHERE 1=1";                 
                   if ($program!="") {
                       $sql .= " AND Program='".$program."'";
@@ -167,7 +201,9 @@
                ?>
                <tr>
                 <td><span><?php echo $row["bug_id"] ?> </span></td>
-                   <td><span><?php echo $row_q[1]." ".$row_q[2].", ".$row_q[3] ?> </span></td>
+                   <td><span>
+                   <?php echo $row_q[1]." ".$row_q[2].", ".$row_q[3] ?> 
+                   </span></td>
                    <td><span><?php echo $row["Problem_Summary"] ?> </span></td>
                   
                   <td> <button type="submit" name="update" class="btn btn-primary"   onclick="dance('<?php echo $row['bug_id']?>');">Update</button></td>

@@ -166,17 +166,19 @@
                         </div>
                     </div>
                 </div>
-    
+                            
                 <div class="row">
                     <div class="col-12 col-md-8">
                         <div class="form-group">
+                            <?php $val=$row['Problem_Summary']; ?>
                             <label for="problem-summary">Problem summary</label>
-                            <?php echo"<input type='text' class='form-control' id='problem-summary' name='summary' value='".$row['Problem_Summary']."' placeholder='".$row['Problem_Summary']."''>"?> 
+                            <input type="text" class="form-control"  name="summary" value="<?php echo htmlentities($val);?>" id='problem-summary' />
+                            <!-- <?php echo "<input type='text' class='form-control' id='problem-summary' name='summary' value='".$row['Problem_Summary']."' />";?>  -->
                         </div>
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="form-group">
-                            <label for="reporductible">Reproductible?</label>
+                            <label for="reporductible">Reproducible?</label>
                             <select class="form-control" id="reporductible" name="reproduce">
                             <?php foreach($bool as $value){
                                 if ($value==$row['Reproducable']) {
