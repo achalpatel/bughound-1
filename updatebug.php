@@ -42,13 +42,13 @@
             <a class="nav-link" href="../home.php">Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="logout.php">Logout</a>
+            <a class="nav-link" href="../logout.php">Logout</a>
         </li>
         </ul>
     <?php else: ?>
         <ul class="nav justify-content-end">
             <li class="nav-item">
-                <a class="nav-link" href="index.php">Login</a>
+                <a class="nav-link" href="../index.php">Login</a>
             </li>
         </ul>
   <?php endif; ?>

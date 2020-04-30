@@ -210,7 +210,7 @@
                             <div class="form-group">
                                 <label for="status">Status</label>
                                 <select class="form-control" id="status" name="status">
-                                <option value="">Please Select</option>
+                                <!-- <option value="">Please Select</option> -->
                                 <option>Open</option>
                                 <option>Closed</option>
                                 <option>Resolved</option>                            

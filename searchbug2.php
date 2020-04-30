@@ -53,8 +53,8 @@
     $report_date=$_POST['reported-date'];
     $resolved_by=$_POST['resolved-by'];
 
-    echo $program;
-    echo "Severity = ".$severity; //edit
+    // echo $program;
+    // echo "Severity = ".$severity; //edit
     ?>
 
 <body>
@@ -105,12 +105,13 @@
               mysqli_select_db($con, "bughound_test1");              
               // $query = "SELECT * FROM bug where Report_type = '".$r_type."' AND Severity = '".$severity."' AND Functional_Area = '".$functional_area."' AND Assigned_To = '".$assigned_to."' AND Reported_By = '".$reported_by."' AND Resolution = '".$resolution."' AND Status = '".$status."' AND Priority = '".$priority."'  " ;  
 
-             
-
+             if($status==""){               
+              $sql = " SELECT * FROM bug WHERE Status_bug='Open';";
+             }
+             else{
               if(isset($_POST['search']))
-              {
-                  $sql = " SELECT * FROM bug WHERE 1=1";
-                 
+              {                  
+                  $sql = " SELECT * FROM bug WHERE 1=1";                 
                   if ($program!="") {
                       $sql .= " AND Program='".$program."'";
                   }
@@ -146,6 +147,8 @@
                   }
                   
               }
+             }
+              
               
               $res = mysqli_query($con, $sql);
 
