@@ -89,7 +89,7 @@
             <?php echo $r_type; ?>
             <tr>
               <th scope="col">Bug Id </th>
-              <th scope="col">Program ID</th>
+              <th scope="col">Program Name</th>
               <th scope="col">Summary</th>
               <th scope="col">Update</th>
               
@@ -160,11 +160,14 @@
 
           <tbody>
             <?php   
-              while($row = mysqli_fetch_assoc($res)) {            
+              while($row = mysqli_fetch_assoc($res)) {
+                $q="SELECT * from programs WHERE prog_id=".$row['Program'];
+                $res_q = mysqli_query($con, $q);            
+                $row_q=mysqli_fetch_array($res_q);
                ?>
                <tr>
                 <td><span><?php echo $row["bug_id"] ?> </span></td>
-                   <td><span><?php echo $row["Program"] ?> </span></td>
+                   <td><span><?php echo $row_q[1]." ".$row_q[2].", ".$row_q[3] ?> </span></td>
                    <td><span><?php echo $row["Problem_Summary"] ?> </span></td>
                   
                   <td> <button type="submit" name="update" class="btn btn-primary"   onclick="dance('<?php echo $row['bug_id']?>');">Update</button></td>
