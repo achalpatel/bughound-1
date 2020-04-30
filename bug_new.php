@@ -43,8 +43,9 @@
         </ul>
   <?php endif; ?>
 <?php 
-    $con = mysqli_connect("localhost","root");
-    mysqli_select_db($con, "bughound_test1");
+    // $con = mysqli_connect("localhost","root");
+    // mysqli_select_db($con, "bughound_test1");
+    $con = new mysqli("localhost", "root", "", "bughound_test1");
     if(! $con ) {
         die('Could not connect: ' . mysqli_error());
     }  
@@ -85,9 +86,50 @@
 
     $key_val= array_keys($data);
     $data_val = array_values($data);
-    // echo implode(', ', $key_val);
-    // echo implode(', ', $data_val);
-    $query= "INSERT INTO bug (" . implode(', ', $key_val) . ") VALUES ('".implode("', '", $data_val). "');";
+    $size_arr=count($data);
+
+    // $query= "INSERT INTO bug (" . implode(', ', $key_val) . ") VALUES ('".implode("', '", $data_val). "');";
+    $query="INSERT into bug (";
+    for($i=0;$i<$size_arr;$i++){
+        $query.= $key_val[$i].",";        
+    }
+    $query=substr($query,0,-1);    
+    $query.=") VALUES (";
+    // echo "Quere=".$query;
+    // $string="";
+    for($i=0;$i<$size_arr;$i++){
+        $query.="?,";
+        // $st.="s";
+        // echo "<br> data-val = ".$data_val[$i];
+    }    
+    $query=substr($query,0,-1).")";
+    echo "<br> query=".$query;
+    // $stm=$con->prepare($query);
+    $stm=mysqli_prepare($con,$query);
+    echo "<br>prepare error=>".$con->error;    
+    $strr="";
+    for($i=0;$i<$size_arr;$i++){
+        if($key_val[$i]=="Program"|| $key_val[$i]=="Reported_By"|| $key_val[$i]=="Functional_Area"|| $key_val[$i]=="Assigned_To"||$key_val[$i]=="Resolved_By"||$key_val[$i]=="Tested_By"){
+            $strr.="i";
+        }
+        else{
+            $strr.="s";
+        }                
+    }
+    echo "<br>strr=".$strr;
+    array_unshift($data_val,$stm,$strr);
+    $bindReferences = array();
+    foreach($data_val as $k => $v) {
+        $bindReferences[$k] = &$data_val[$k];
+    }
+    call_user_func_array("mysqli_stmt_bind_param",$bindReferences);
+    // $stm->bind_param($strr, $data_val);
+    // echo "Quere=".$query."<br>";
+    // echo $st;
+        
+    // $stm->bind_param($st,$data_val);
+    mysqli_stmt_execute($stm);
+
     // echo "<br>".$query= "INSERT INTO bug (" . implode(', ', $key_val) . ") VALUES ('".implode("', '", $data_val). "');"; 
     // if($_SESSION['userlevel']!=1){
     //     $area=$_POST['function-area'];
@@ -128,7 +170,8 @@
     // echo "assignedto - ".$assigned_to;
         
     
-    $result=mysqli_query($con,$query);
+    // $result=mysqli_query($con,$query);
+    // $result=$con->get_result();
     if($result){
         echo "Bug submitted";
     }
