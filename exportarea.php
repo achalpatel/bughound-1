@@ -74,6 +74,7 @@
                         <option value="areas">areas</option>
                         <option value="employees">employees</option>
                         <option value="programs">programs</option>
+                        <option value="bug">Bug</option>
 
                 
             </select>

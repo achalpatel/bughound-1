@@ -1,7 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update status</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+    <!-- Jquery UI (Datepicker) -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <?php
     session_start();
@@ -120,7 +132,7 @@
         echo "Submission failed - Error - ";
     }
     $num_files=count($_FILES['file1']['tmp_name']);
-    echo "count= ".$num_files;
+    // echo "count= ".$num_files;
     $query_file="";
     for($i=0;$i<$num_files;$i++){
         $filename=$_FILES['file1']['name'][$i];
@@ -129,7 +141,7 @@
         $query_file.="INSERT INTO attachment(bug, file_name) VALUES ('".$bug_id."', '".$filename."');";
     }
     if(mysqli_multi_query($con, $query_file)){
-        echo "Files inserted";
+        // echo "Files inserted";
     }else{
         echo "Error".$query_file."<br>".mysqli_error($con);
     }
@@ -150,7 +162,7 @@
             </li>
         </ul>
     <?php endif; ?>
-    <button onclick="go_back()">Back</button>
+    <button class="btn btn-primary" onclick="go_back()">Back</button>
 </body>
 <script type="text/javascript">
     function go_back(){

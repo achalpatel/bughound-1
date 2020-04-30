@@ -1,7 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bug Added</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+    <!-- Jquery UI (Datepicker) -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+	
 </head>
 <?php
     session_start();
@@ -121,7 +135,7 @@
         
     // $stm->bind_param($st,$data_val);
     $exec_stat= mysqli_stmt_execute($stm);
-    printf("%d Row inserted.\n", mysqli_stmt_affected_rows($stm));
+    // printf("%d Row inserted.\n", mysqli_stmt_affected_rows($stm));
     // echo "<br>".$query= "INSERT INTO bug (" . implode(', ', $key_val) . ") VALUES ('".implode("', '", $data_val). "');"; 
     // if($_SESSION['userlevel']!=1){
     //     $area=$_POST['function-area'];
@@ -182,7 +196,7 @@
             $query_file.="INSERT INTO attachment(bug, file_name) VALUES ('".$bug_id."', '".$filename."');";
         }
         if(mysqli_multi_query($con, $query_file)){
-            echo "Files inserted";
+            // echo "Files inserted";
         }else{
             echo "Error".$query_file."<br>".mysqli_error($con);
         }
@@ -192,24 +206,20 @@
 
   	?>
 <body>
-    <?php if(isset($_SESSION['username'])): ?>
-        <ul class="nav justify-content-end">
-        <li class="nav-item">
-            <a class="nav-link" href="logout.php">Logout</a>
-        </li>
-        </ul>
-    <?php else: ?>
-        <ul class="nav justify-content-end">
-            <li class="nav-item">
-                <a class="nav-link" href="index.php">Login</a>
-            </li>
-        </ul>
-    <?php endif; ?>
-    <button onclick="go_back()">Back</button>
+    <br>
+    <button class="btn btn-primary" onclick="go_back()">Back</button>
 </body>
 <script type="text/javascript">
     function go_back(){
         window.location.replace("bug.php");
     }            
 </script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+</html>
 </html>
