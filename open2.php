@@ -49,13 +49,16 @@
         if(mysqli_num_rows($result)>0){
             $row=mysqli_fetch_array($result);
             header('Content-Description: File Transfer');
-            header("Content-Type: ".mime_content_type("uploads/".$file_name)."");
-            header("Content-Disposition: inline; filename=".$file_name."");
+            header("Content-Type: ".mime_content_type("uploads/".$file_name));
+            header("Content-Disposition: inline; filename=".$file_name);
             header('Expires: 0');
+            header('Content-Transfer-Encoding: binary');
             header('Cache-Control: must-revalidate');
-            header('Pragma: public');            
-            readfile("uploads/".$file_name);        
-            
+            header('Pragma: public'); 
+            ob_clean();
+            flush();           
+            readfile("uploads/".$file_name);
+            exit();                        
         }
         else{
             echo mysqli_error($con);
