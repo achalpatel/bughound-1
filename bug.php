@@ -150,6 +150,14 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-12 col-md-12">
+                        <div class="form-group">
+                            <label for="fix">Suggested Fix</label>
+                            <textarea class="form-control" id="fix" rows="2" name="fix"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="reported-by">Reported by (Required)</label>

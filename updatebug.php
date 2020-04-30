@@ -197,12 +197,20 @@
                     <div class="col-12 col-md-12">
                         <div class="form-group">
                             <label for="problem">Problem</label>
-                            <?php echo"<textarea class='form-control' id='problem' value='".$row['Problem']."' rows='2' name='problem' placeholder='".$row['Problem']."' >".$row['Problem']."</textarea>"?> 
+                            <textarea class='form-control' id='problem' value="<?php echo htmlentities($row['Problem']);?>" rows='2' name='problem'><?php echo htmlentities($row['Problem']);?></textarea>
+                            <!-- <?php echo"<textarea class='form-control' id='problem' value='".$row['Problem']."' rows='2' name='problem' placeholder='".$row['Problem']."' >".$row['Problem']."</textarea>"?>  -->
                             
                         </div>
                     </div>
                 </div>
-                            
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <div class="form-group">
+                            <label for="fix">Suggested Fix</label>
+                            <textarea class="form-control" id="fix" rows="2" name="fix" value="<?php echo htmlentities($row['Suggested_Fix']);?>"><?php echo htmlentities($row['Suggested_Fix']);?></textarea>
+                        </div>
+                    </div>
+                </div>        
                             
              
                 <div class="row">
@@ -275,7 +283,8 @@
                         <div class="col-12 col-md-12">
                             <div class="form-group">
                                 <label for="comments">Comments</label>
-                                <?php echo "<textarea class='form-control id='comments' name='comments' value='".$row['Comments']."' rows='2' placeholder='".$row['Comments']."'>".$row['Comments']."</textarea>"?>
+                                <textarea class='form-control' id='comments' value="<?php echo htmlentities($row['Comments']);?>" rows='2' name='comments'><?php echo htmlentities($row['Problem']);?></textarea>
+                                <!-- <?php echo "<textarea class='form-control id='comments' name='comments' value='".$row['Comments']."' rows='2' placeholder='".$row['Comments']."'>".$row['Comments']."</textarea>"?> -->
                             </div>
                         </div>
                     </div>

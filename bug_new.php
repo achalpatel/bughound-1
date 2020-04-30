@@ -82,6 +82,7 @@
     if($_POST['summary'] != "")$data = array_push_assoc($data, 'Problem_Summary', $_POST['summary']);
     if($_POST['reproduce'] != "") $data =array_push_assoc($data, 'Reproducable', $_POST['reproduce']);
     if($_POST['problem'] != "") $data =array_push_assoc($data, 'Problem', $_POST['problem']);
+    if($_POST['fix'] != "") $data =array_push_assoc($data, 'Suggested_Fix', $_POST['fix']);
     if($_POST['reported-by'] != "") $data =array_push_assoc($data, 'Reported_By', $_POST['reported-by']);
     if($_POST['reported-date'] != "") $data =array_push_assoc($data, 'Report_Date', $_POST['reported-date']);
     // other fields
@@ -188,19 +189,21 @@
         $bug_id=mysqli_stmt_insert_id($stm);
         $num_files=count($_FILES['file1']['tmp_name']);
         // echo "count= ".$num_files;
-        $query_file="";
-        for($i=0;$i<$num_files;$i++){
-            $filename=$_FILES['file1']['name'][$i];
-            move_uploaded_file($_FILES['file1']['tmp_name'][$i],'uploads/'.$filename);
-            // $data=file_get_contents("uploads/".$_FILES['file1']['name'][$i]);            
-            $query_file.="INSERT INTO attachment(bug, file_name) VALUES ('".$bug_id."', '".$filename."');";
-        }
-        if(mysqli_multi_query($con, $query_file)){
-            // echo "Files inserted";
-        }else{
-            echo "Error".$query_file."<br>".mysqli_error($con);
-        }
-        mysqli_close($con);
+        if($_FILES['file1']['tmp_name'][0]!=""){
+            $query_file="";
+            for($i=0;$i<$num_files;$i++){
+                $filename=$_FILES['file1']['name'][$i];
+                move_uploaded_file($_FILES['file1']['tmp_name'][$i],'uploads/'.$filename);
+                // $data=file_get_contents("uploads/".$_FILES['file1']['name'][$i]);            
+                $query_file.="INSERT INTO attachment(bug, file_name) VALUES ('".$bug_id."', '".$filename."');";
+            }
+            if(mysqli_multi_query($con, $query_file)){
+                // echo "Files inserted";
+            }else{
+                echo "Error".$query_file."<br>".mysqli_error($con);
+            }
+            mysqli_close($con);
+        }        
 
     }
 
