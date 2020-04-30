@@ -25,8 +25,7 @@
         // redirect them to your desired location
         header('location:home.php');        
     }
-    $con = mysqli_connect("localhost","root");
-    mysqli_select_db($con, "bughound_test1");
+    $con = new mysqli("localhost", "root", "", "bughound_test1");
     if(! $con ) {
         die('Could not connect: ' . mysqli_error());
     }
@@ -81,23 +80,45 @@
         // $query="Update bug Set Program='".$program."', Report_type='".$r_type."', Severity='".$severity."', Problem_Summary='".$summary."', Reproducable='".$reproduce."', Problem='".$problem."', Reported_By='".$r_by."', Report_Date='".$r_date."',
         //     Functional_Area='".$area."', Assigned_To='".$assigned_to."', Comments='".$comments."', Status_bug='".$status."', Priority='".$priority."', Resolution='".$resolution."', Resolution_Version='".$resolution_v."', Resolved_By='".$resolved_by."', Resolve_Date='".$resolved_date."',
         //     Tested_By='".$tested_by."', Test_Date='".$tested_date."', Deferred='".$treat."' WHERE bug_id=".$bug_id;
+    $key_val= array_keys($data);
+    $data_val = array_values($data);
+    $size_arr=count($data);
     $query = "UPDATE bug Set ";
+
     foreach($data as $key=>$val){
-        $query.= $key."='".$val."',";
+        $query.= $key."=?,";
     }
     $query = substr($query,0,-1);
-    $query.="WHERE bug_id=".$bug_id.";";
-    echo "Query = ".$query;                
+    $query.=" WHERE bug_id=?";
+    // echo "Query = ".$query;                
+    $stm=mysqli_prepare($con,$query);
+    if(!$stm){echo "false".mysqli_error($con);}
+    // $result=mysqli_query($con,$query);
+    $strr="";
+    for($i=0;$i<$size_arr;$i++){
+        if($key_val[$i]=="Program"|| $key_val[$i]=="Reported_By"|| $key_val[$i]=="Functional_Area"|| $key_val[$i]=="Assigned_To"||$key_val[$i]=="Resolved_By"||$key_val[$i]=="Tested_By"){
+            $strr.="i";
+        }
+        else{
+            $strr.="s";
+        }                
+    }
+    $strr.="i";
+    array_push($data_val, $bug_id);
+    array_unshift($data_val,$stm,$strr);
     
-    $result=mysqli_query($con,$query);
-    if($result){
+    $bindReferences = array();
+    foreach($data_val as $k => $v) {
+        $bindReferences[$k] = &$data_val[$k];
+    }
+    call_user_func_array("mysqli_stmt_bind_param",$bindReferences);
+    $exec_stat= mysqli_stmt_execute($stm);
+    if($exec_stat){
         echo "Bug Updated";
     }
-    else{
-        echo "Update failed - ".mysqli_error($con);
+    else{    
+        echo "Submission failed - Error - ";
     }
-    
-
     $num_files=count($_FILES['file1']['tmp_name']);
     echo "count= ".$num_files;
     $query_file="";
